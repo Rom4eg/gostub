@@ -1,0 +1,3 @@
+host: somehost
+port: 123456
+stub-root: ./somefolder
