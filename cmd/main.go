@@ -34,6 +34,10 @@ func main() {
 		cancel()
 	}()
 
+	runServices(ctx)
+}
+
+func runServices(ctx context.Context) {
 	cfg := config.Get()
 
 	wg := new(sync.WaitGroup)

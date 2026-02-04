@@ -1,12 +1,12 @@
 package config
 
 func Reload() {
-	cfg = nil
+	Set(nil)
 
 	c, err := _readConfig()
 	if err != nil {
 		panic(err)
 	}
 
-	cfg = c
+	Set(c)
 }
