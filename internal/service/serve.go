@@ -30,7 +30,7 @@ func (s *Service) Serve(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(ctx.GetStatus())
+	w.WriteHeader(ctx.GetStatusCode())
 	_, err = w.Write(res)
 	if err != nil {
 		s.l.Error(err.Error())

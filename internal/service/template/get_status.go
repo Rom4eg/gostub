@@ -1,5 +1,7 @@
 package template
 
-func (tx *TemplateContext) GetStatus() int {
-	return tx.status
+import "fmt"
+
+func (tx *TemplateContext) GetStatus() (string, error) {
+	return fmt.Sprintf("%d", tx.status), nil
 }
