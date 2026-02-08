@@ -25,7 +25,7 @@ func TestRenderTemplate(t *testing.T) {
 			name:      "FAIL: file not exists",
 			file:      "not-existing",
 			ctx:       &TemplateContext{},
-			tpl:       []byte(""),
+			tpl:       nil,
 			wantTpl:   nil,
 			wantError: true,
 		},
@@ -59,8 +59,10 @@ func TestRenderTemplate(t *testing.T) {
 
 			dir := t.TempDir()
 			tmpFile := filepath.Join(dir, tt.file)
-			err := os.WriteFile(tmpFile, tt.tpl, 0777)
-			assert.NoError(t, err)
+			if tt.tpl != nil {
+				err := os.WriteFile(tmpFile, tt.tpl, 0777)
+				assert.NoError(t, err)
+			}
 
 			actual, err := RenderTemplate(tmpFile, tt.ctx)
 			if tt.wantError {
