@@ -13,10 +13,14 @@ type Log struct {
 }
 
 func New(p, msg string, l LogLevel) *Log {
+	m := msg
+	if p != "" {
+		m = fmt.Sprintf("%s %s", p, msg)
+	}
 	return &Log{
 		Time:  time.Now().Format(time.RFC3339),
 		Level: l,
-		Msg:   fmt.Sprintf("%s %s", p, msg),
+		Msg:   m,
 	}
 }
 

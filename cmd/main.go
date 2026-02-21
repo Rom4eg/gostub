@@ -2,11 +2,15 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"gostub/config"
 	"gostub/flags"
+	"gostub/internal/manager"
 	"gostub/internal/service"
 	"gostub/log"
+	"net/http"
+
 	"os"
 	"os/signal"
 	"sync"
@@ -42,22 +46,42 @@ func runServices(ctx context.Context) {
 
 	wg := new(sync.WaitGroup)
 	wg.Add(len(cfg.Services))
+	m := manager.New(log.NewLogger(""))
+	f := service.NewFactory()
 	for _, s := range cfg.Services {
 		go func() {
 			defer wg.Done()
 
-			log.Info(fmt.Sprintf("start service: %s", s.Name))
-			opts := service.ServiceOpts{
-				Name:     s.Name,
-				Host:     s.Host,
-				Port:     s.Port,
-				StubRoot: cfg.StubRoot,
+			opts := service.FactoryOpt{
+				Type:       service.ServiceType(s.Type),
+				Logger:     log.NewLogger(fmt.Sprintf("[%s]", s.Name)),
+				ServiceOpt: s.Options,
 			}
-			service := service.NewService(opts)
-			err := service.Run(ctx)
+			srv, err := f.MakeService(s.Name, opts)
 			if err != nil {
 				log.Error(err.Error())
+				return
 			}
+
+			done := make(chan struct{})
+			go func() {
+				defer close(done)
+				<-ctx.Done()
+				err := m.StopService(s.Name)
+				if err != nil {
+					log.Error(err.Error())
+				}
+
+				done <- struct{}{}
+			}()
+
+			err = m.StartService(s.Name, srv)
+			if err != nil && !errors.Is(err, http.ErrServerClosed) {
+				log.Error(err.Error())
+				return
+			}
+
+			<-done
 		}()
 	}
 	wg.Wait()

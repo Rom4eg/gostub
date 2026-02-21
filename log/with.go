@@ -3,8 +3,12 @@ package log
 import "fmt"
 
 func (l *Logger) With(msg string) *Logger {
+	p := msg
+	if l.prefix != "" {
+		p = fmt.Sprintf("%s %s", l.prefix, msg)
+	}
 	return &Logger{
-		prefix: fmt.Sprintf("%s %s", l.prefix, msg),
+		prefix: p,
 	}
 }
 
