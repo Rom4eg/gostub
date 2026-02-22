@@ -182,7 +182,7 @@ func TestService__lookupResources(t *testing.T) {
 			name: "FAIL: inaccessable directory",
 			path: "dir",
 			prepare: func(s string) error {
-				fp := filepath.Join(s, "dir")
+				fp := filepath.Join(s, "dir-inaccessible")
 				err := os.Mkdir(fp, os.FileMode(0000))
 				return err
 			},

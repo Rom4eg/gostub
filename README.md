@@ -29,6 +29,12 @@ cd gostub
 make all
 ```
 
+### Docker
+```
+docker pull rom4eg196/gostub
+docker run --rm -p 8080:8080 rom4eg196/gostub
+```
+
 ## ⚙️ Configuration
 
 Create a configuration file (e.g. config.yaml):
