@@ -22,7 +22,7 @@ func TestService__render(t *testing.T) {
 		{
 			name: "FAIL: not existing",
 			file: "not-existing",
-			tpl:  "",
+			tpl:  "{{define \"main\"}}{{end}}",
 			prepare: func(s, tpl string) error {
 				return nil
 			},
@@ -54,7 +54,7 @@ func TestService__render(t *testing.T) {
 		{
 			name: "PASS: valid template",
 			file: "index",
-			tpl:  "{{- if eq 1 1 -}}PASS{{- end -}}",
+			tpl:  "{{define \"main\"}}{{- if eq 1 1 -}}PASS{{- end -}}{{- end -}}",
 			prepare: func(s, tpl string) error {
 				fp := filepath.Join(s, "index")
 				fh, err := os.OpenFile(fp, os.O_CREATE|os.O_RDWR, 0777)
@@ -99,7 +99,7 @@ func TestService_RenderString(t *testing.T) {
 	}{
 		{
 			name: "PASS: render string",
-			tpl:  "{{- if eq 1 1 -}}PASS{{- end -}}",
+			tpl:  "{{define \"main\"}}{{- if eq 1 1 -}}PASS{{- end -}}{{- end -}}",
 			prepare: func(s, tpl string) error {
 				fp := filepath.Join(s, "index")
 				fh, err := os.OpenFile(fp, os.O_CREATE|os.O_RDWR, 0777)
@@ -139,7 +139,7 @@ func TestService_Render(t *testing.T) {
 	}{
 		{
 			name: "PASS: render string",
-			tpl:  "{{- if eq 1 1 -}}PASS{{- end -}}",
+			tpl:  "{{define \"main\"}}{{- if eq 1 1 -}}PASS{{- end -}}{{- end -}}",
 			prepare: func(s, tpl string) error {
 				fp := filepath.Join(s, "index")
 				fh, err := os.OpenFile(fp, os.O_CREATE|os.O_RDWR, 0777)
