@@ -2,7 +2,7 @@
 
 [![Go Version](https://img.shields.io/github/go-mod/go-version/rom4eg/gostub)](https://golang.org/)
 [![License](https://img.shields.io/github/license/rom4eg/gostub)](LICENSE)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/rom4eg/gostub/ci.yml)](https://github.com/rom4eg/gostub/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/rom4eg/gostub/go.yml)](https://github.com/rom4eg/gostub/actions)
 
 gostub - This is a lightweight service for simulating responses to various APIs. During development and debugging, stubs for external services are quickly created when the real service is unavailable or difficult to use.
 
