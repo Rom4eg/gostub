@@ -57,14 +57,14 @@ Save the file, for example, /path/to/your/stubs/api/user.tmpl:
     {
       "error": "Bad Request",
       "details": "Invalid parameters",
-      "reason": {{ printf "Max process limit %s" (env "GOMAXPROCS") | json }}
+      "reason": {{ printf "Max process limit %s" (env "GOMAXPROCS") }}
     }
   {{- else -}}
     {{- .SetCode 200 -}}
     {
       "status": "success",
       "data": {
-        "user_id": {{ index $query "id" | first | default "unknown" | json }},
+        "user_id": {{ index $query "id" | first | default "unknown" }},
         "gomaxprocs": {{ env "GOMAXPROCS" }}
       }
     }
@@ -82,7 +82,7 @@ Available functions in the template
 | .Request       | Original HTTP request                      | .Request.Method, .Request.URL |
 
 
-## 🚀 ЗапуLaunchск
+## 🚀 Launch
 
 ```bash
 ./gostub -config /path/to/config.yaml
@@ -91,44 +91,101 @@ Example request:
 
 ```bash
 # Request without debug parameter (should return 200)
-curl -ik "http://localhost:8080/api/user?id=123"
+curl -i "http://localhost:8080/api/user?id=123"
 
 # Request with debug parameter (should return 400)
-curl -ik "http://localhost:8080/api/user?debug=true&id=123"
+curl -i "http://localhost:8080/api/user?debug=true&id=123"
 ```
 
 ## 🎯 Examples of use
 
-Simple answer
+Simple template
 
 ```go
-{{ define "main" }}
-  {{ .SetCode 200 }}
-  {
-    "message": "Hello, World!",
-    "method": {{ .Request.Method | json }},
-    "path": {{ .Request.URL.Path | json }}
-  }
-{{ end }}
+{{- define "main" -}}
+  {{- .SetCode 200 -}}
+{
+  "message": "Hello, World!",
+  "method": {{ .Request.Method }},
+  "path": {{ .Request.URL.Path }}
+}
+{{- end -}}
 ```
+
+will produce that response
+
+```text
+$ curl -i -X OPTIONS "http://localhost:8080"
+HTTP/1.1 200 OK
+Date: Sun, 22 Feb 2026 13:20:09 GMT
+Content-Length: 66
+Content-Type: text/plain; charset=utf-8
+
+{
+  "message": "Hello, World!",
+  "method": OPTIONS,
+  "path": /
+}
+```
+
 
 Conditional logic
 
 ```go
-{{ define "main" }}
+{{- define "main" -}}
   {{- $method := .Request.Method -}}
   {{- if eq $method "GET" -}}
-    {{ .SetCode 200 }}
+    {{- .SetCode 200 -}}
     { "data": "GET request processed" }
   {{- else if eq $method "POST" -}}
-    {{ .SetCode 201 }}
+    {{- .SetCode 201 -}}
     { "data": "POST request processed" }
   {{- else -}}
-    {{ .SetCode 405 }}
+    {{- .SetCode 405 -}}
     { "error": "Method not allowed" }
   {{- end -}}
 {{- end -}}
 ```
+
+will produce response:
+
+for a GET method
+```bash
+$ curl -i "http://localhost:8080"
+
+HTTP/1.1 200 OK
+Date: Sun, 22 Feb 2026 13:21:45 GMT
+Content-Length: 35
+Content-Type: text/plain; charset=utf-8
+
+{ "data": "GET request processed" }
+```
+
+for a POST method
+```bash
+$ curl -i -X POST "http://localhost:8080"
+
+HTTP/1.1 201 Created
+Date: Sun, 22 Feb 2026 13:23:12 GMT
+Content-Length: 36
+Content-Type: text/plain; charset=utf-8
+
+{ "data": "POST request processed" }
+```
+
+for a PUT method
+```bash
+$ curl -i -X PUT "http://localhost:8080"
+
+HTTP/1.1 405 Method Not Allowed
+Date: Sun, 22 Feb 2026 13:17:52 GMT
+Content-Length: 33
+Content-Type: text/plain; charset=utf-8
+
+{ "error": "Method not allowed" }
+```
+
+
 
 ## 🛠 Use cases
 
@@ -140,7 +197,7 @@ Conditional logic
 ## 📄 License
 GNU/GPLv3 License. More details in the LICENSE file
 
-## 🤝 Contribution to the project
+## 🤝 Contribution
 PR and ideas are welcome! Create an issue to discuss new features or bugs.
 
-# gostub — made with ❤️ for developers
+### gostub — made with ❤️ for developers
