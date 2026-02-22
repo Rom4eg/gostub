@@ -92,6 +92,7 @@ Example request:
 ```bash
 # Request without debug parameter (should return 200)
 curl -i "http://localhost:8080?id=123"
+
 HTTP/1.1 200 OK
 Date: Sun, 22 Feb 2026 13:32:05 GMT
 Content-Length: 85
