@@ -1,15 +1,15 @@
-gostub 🚀
+# gostub
 
 gostub - This is a lightweight service for simulating responses to various APIs. During development and debugging, stubs for external services are quickly created when the real service is unavailable or difficult to use.
 
-🌟 Possibilities
+## 🌟 Possibilities
  * Flexible configuration - support multiple services in a single configuration file
  * Powerful Go templates - use the full power of the templating language to generate dynamic responses
  * Dynamic HTTP statuses - set response codes directly from the template
  * Access to environment variables - retrieve system variable values ​​in templates
  * Easy deployment - a single binary with no external dependencies
 
-📦 Installation
+## 📦 Installation
 
 From source
 ```bash
@@ -21,7 +21,7 @@ make all
 Download the binary release
 Visit the releases page and download the appropriate version for your OS.
 
-⚙️ Configuration
+## ⚙️ Configuration
 Create a configuration file (e.g. config.yaml):
 ```yaml
 services:
@@ -42,7 +42,7 @@ Configuration options
 | port      | Listening port                     | 8080             |
 | root      | Root directory with templates      | /home/user/stubs |
 
-📝 Creating Stubs
+## 📝 Creating Stubs
 Placeholders are Go templates that are rendered when the corresponding URL is accessed.
 The request URL is translated into a filesystem path relative to the root directory.
 
@@ -82,7 +82,7 @@ Available functions in the template
 | .Request       | Original HTTP request                      | .Request.Method, .Request.URL |
 
 
-🚀 ЗапуLaunchск
+## 🚀 ЗапуLaunchск
 
 ```bash
 ./gostub -config /path/to/config.yaml
@@ -97,7 +97,7 @@ curl -ik "http://localhost:8080/api/user?id=123"
 curl -ik "http://localhost:8080/api/user?debug=true&id=123"
 ```
 
-🎯 Examples of use
+## 🎯 Examples of use
 
 Simple answer
 
@@ -130,17 +130,17 @@ Conditional logic
 {{- end -}}
 ```
 
-🛠 Use cases
+## 🛠 Use cases
 
   * Frontend development when the backend isn't ready yet
   * Error handling testing: simulating various HTTP statuses
   * Load testing: fast responses without accessing real services
   * Demos and presentations when a predictable API response is needed
 
-📄 License
+## 📄 License
 GNU/GPLv3 License. More details in the LICENSE file
 
-🤝 Contribution to the project
+## 🤝 Contribution to the project
 PR and ideas are welcome! Create an issue to discuss new features or bugs.
 
-gostub — made with ❤️ for developers
+# gostub — made with ❤️ for developers
