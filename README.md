@@ -7,11 +7,18 @@
 gostub - This is a lightweight service for simulating responses to various APIs. During development and debugging, stubs for external services are quickly created when the real service is unavailable or difficult to use.
 
 ## 🌟 Possibilities
- * Flexible configuration - support multiple services in a single configuration file
  * Powerful Go templates - use the full power of the templating language to generate dynamic responses
  * Dynamic HTTP statuses - set response codes directly from the template
- * Access to environment variables - retrieve system variable values ​​in templates
+ * Flexible configuration - support multiple services in a single configuration file
  * Easy deployment - a single binary with no external dependencies
+ * Access to environment variables - retrieve system variable values ​​in templates
+
+## 🛠 Use cases
+
+  * Demos and presentations when a predictable API response is needed
+  * Load testing: fast responses without accessing real services
+  * Error handling testing: simulating various HTTP statuses
+  * Frontend development when the backend isn't ready yet
 
 ## 📦 Installation
 
@@ -22,11 +29,8 @@ cd gostub
 make all
 ```
 
-### Download the binary release
-Visit the releases page and download the appropriate version for your OS.
-😥 Sorry! it's still not done yet
-
 ## ⚙️ Configuration
+
 Create a configuration file (e.g. config.yaml):
 ```yaml
 services:
@@ -38,7 +42,7 @@ services:
       root: /tmp/stubs
 ```
 
-Configuration options
+### Configuration
 | Parameter | Description                        | Example          |
 |-----------|------------------------------------|------------------|
 | name      | Service ID                         | default          |
@@ -47,13 +51,14 @@ Configuration options
 | port      | Listening port                     | 8080             |
 | root      | Root directory with templates      | /tmp/stubs |
 
-* Note: in the example above the service will look for stubs in /tmp/stubs/default
+#### Note: each service will append it's name to the root directory parameter.
+In the example above the service will look for stubs in /tmp/stubs/default
 
 ## 📝 Creating Stubs
 Placeholders are Go templates that are rendered when the corresponding URL is accessed.
 The request URL is translated into a filesystem path relative to the root directory.
 
-Example template
+### Example template
 Save the file, for example, /tmp/stubs/default/api/user:
 ```go
 
@@ -79,7 +84,7 @@ Save the file, for example, /tmp/stubs/default/api/user:
 {{- end -}}
 ```
 
-Available functions in the template
+### Available functions in the template
 
 
 | Function       | Description                                | Example                       |
@@ -127,103 +132,6 @@ Content-Type: text/plain; charset=utf-8
   "reason": Max process limit 10
 }
 ```
-
-## 🎯 Examples of use
-
-Simple template
-
-```go
-{{- define "main" -}}
-  {{- .SetCode 200 -}}
-{
-  "message": "Hello, World!",
-  "method": {{ .Request.Method }},
-  "path": {{ .Request.URL.Path }}
-}
-{{- end -}}
-```
-
-will produce that response
-
-```text
-$ curl -i -X OPTIONS "http://localhost:8080"
-HTTP/1.1 200 OK
-Date: Sun, 22 Feb 2026 13:20:09 GMT
-Content-Length: 66
-Content-Type: text/plain; charset=utf-8
-
-{
-  "message": "Hello, World!",
-  "method": OPTIONS,
-  "path": /
-}
-```
-
-
-Conditional logic
-
-```go
-{{- define "main" -}}
-  {{- $method := .Request.Method -}}
-  {{- if eq $method "GET" -}}
-    {{- .SetCode 200 -}}
-    { "data": "GET request processed" }
-  {{- else if eq $method "POST" -}}
-    {{- .SetCode 201 -}}
-    { "data": "POST request processed" }
-  {{- else -}}
-    {{- .SetCode 405 -}}
-    { "error": "Method not allowed" }
-  {{- end -}}
-{{- end -}}
-```
-
-will produce response:
-
-for a GET method
-```bash
-$ curl -i "http://localhost:8080"
-
-HTTP/1.1 200 OK
-Date: Sun, 22 Feb 2026 13:21:45 GMT
-Content-Length: 35
-Content-Type: text/plain; charset=utf-8
-
-{ "data": "GET request processed" }
-```
-
-for a POST method
-```bash
-$ curl -i -X POST "http://localhost:8080"
-
-HTTP/1.1 201 Created
-Date: Sun, 22 Feb 2026 13:23:12 GMT
-Content-Length: 36
-Content-Type: text/plain; charset=utf-8
-
-{ "data": "POST request processed" }
-```
-
-for a PUT method
-```bash
-$ curl -i -X PUT "http://localhost:8080"
-
-HTTP/1.1 405 Method Not Allowed
-Date: Sun, 22 Feb 2026 13:17:52 GMT
-Content-Length: 33
-Content-Type: text/plain; charset=utf-8
-
-{ "error": "Method not allowed" }
-```
-
-
-
-## 🛠 Use cases
-
-  * Frontend development when the backend isn't ready yet
-  * Error handling testing: simulating various HTTP statuses
-  * Load testing: fast responses without accessing real services
-  * Demos and presentations when a predictable API response is needed
 
 ## 📄 License
 GNU/GPLv3 License. More details in the LICENSE file
