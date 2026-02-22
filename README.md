@@ -1,5 +1,7 @@
 # gostub
 
+[![Go Version](https://img.shields.io/github/go-mod/go-version/rom4eg/gostub)](https://golang.org/)
+
 gostub - This is a lightweight service for simulating responses to various APIs. During development and debugging, stubs for external services are quickly created when the real service is unavailable or difficult to use.
 
 ## 🌟 Possibilities
