@@ -61,8 +61,8 @@ services:
 In the example above the service will look for stubs in /tmp/stubs/default
 
 ## 📝 Creating Stubs
-Placeholders are Go templates that are rendered when the corresponding URL is accessed.
-The request URL is translated into a filesystem path relative to the root directory.
+Stubs are Go templates that are rendered when the corresponding URL is accessed.
+The request URL is translated into a filesystem path relative to the root directory and service name.
 
 ### Example template
 Save the file, for example, /tmp/stubs/default/api/user:
