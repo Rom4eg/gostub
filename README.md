@@ -32,7 +32,7 @@ services:
     options:
       host: localhost
       port: 8080
-      root: /path/to/your/stubs
+      root: /tmp/stubs
 ```
 
 Configuration options
@@ -42,15 +42,16 @@ Configuration options
 | type      | Service type (currently only http) | http             |
 | host      | Host for listening                 | localhost        |
 | port      | Listening port                     | 8080             |
-| root      | Root directory with templates      | /home/user/stubs |
+| root      | Root directory with templates      | /tmp/stubs |
 
+* Note: in the example above the service will look for stubs in /tmp/stubs/default
 
 ## 📝 Creating Stubs
 Placeholders are Go templates that are rendered when the corresponding URL is accessed.
 The request URL is translated into a filesystem path relative to the root directory.
 
 Example template
-Save the file, for example, /path/to/your/stubs/default/api/user:
+Save the file, for example, /tmp/stubs/default/api/user:
 ```go
 
 {{ define "main" }}
