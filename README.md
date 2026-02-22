@@ -1,6 +1,7 @@
 # gostub
 
 [![Go Version](https://img.shields.io/github/go-mod/go-version/rom4eg/gostub)](https://golang.org/)
+[![License](https://img.shields.io/github/license/rom4eg/gostub)](LICENSE)
 
 gostub - This is a lightweight service for simulating responses to various APIs. During development and debugging, stubs for external services are quickly created when the real service is unavailable or difficult to use.
 
@@ -13,14 +14,14 @@ gostub - This is a lightweight service for simulating responses to various APIs.
 
 ## 📦 Installation
 
-From source
+### From source
 ```bash
 git clone https://github.com/rom4eg/gostub.git
 cd gostub
 make all
 ```
 
-Download the binary release
+### Download the binary release
 Visit the releases page and download the appropriate version for your OS.
 
 ## ⚙️ Configuration
