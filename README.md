@@ -42,12 +42,13 @@ Configuration options
 | port      | Listening port                     | 8080             |
 | root      | Root directory with templates      | /home/user/stubs |
 
+
 ## 📝 Creating Stubs
 Placeholders are Go templates that are rendered when the corresponding URL is accessed.
 The request URL is translated into a filesystem path relative to the root directory.
 
 Example template
-Save the file, for example, /path/to/your/stubs/api/user.tmpl:
+Save the file, for example, /path/to/your/stubs/default/api/user:
 ```go
 
 {{ define "main" }}
@@ -91,7 +92,7 @@ Example request:
 
 ```bash
 # Request without debug parameter (should return 200)
-curl -i "http://localhost:8080?id=123"
+curl -i "http://localhost:8080/api/user?id=123"
 
 HTTP/1.1 200 OK
 Date: Sun, 22 Feb 2026 13:32:05 GMT
@@ -107,7 +108,7 @@ Content-Type: text/plain; charset=utf-8
 }
 
 # Request with debug parameter (will return 400)
-curl -i "http://localhost:8080?debug=true"
+curl -i "http://localhost:8080/api/user?debug=true&id=123"
 
 HTTP/1.1 400 Bad Request
 Date: Sun, 22 Feb 2026 13:30:57 GMT
