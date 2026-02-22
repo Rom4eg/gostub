@@ -8,6 +8,7 @@ import (
 var funcs = template.FuncMap{
 	"base64encode": base64Encode,
 	"base64decode": base64Decode,
+	"env":          env,
 }
 
 func (s *Service) Render(t string) ([]byte, error) {
@@ -32,14 +33,13 @@ func (s *Service) _render(t string) (*bytes.Buffer, error) {
 		return nil, err
 	}
 
-	tpl, err := template.ParseFiles(files...)
-	tpl = tpl.Funcs(funcs)
+	tpl, err := template.New("main").Funcs(funcs).ParseFiles(files...)
 	if err != nil {
 		return nil, err
 	}
 
 	var buf bytes.Buffer
-	err = tpl.Execute(&buf, s.ctx)
+	err = tpl.ExecuteTemplate(&buf, "main", s.ctx)
 	if err != nil {
 		return nil, err
 	}
