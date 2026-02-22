@@ -53,21 +53,21 @@ Save the file, for example, /path/to/your/stubs/api/user.tmpl:
 {{ define "main" }}
   {{- $query := .Request.URL.Query -}}
   {{- if eq ($query.Get "debug") "true" -}}
-    {{- .SetCode 400 -}}
-    {
-      "error": "Bad Request",
-      "details": "Invalid parameters",
-      "reason": {{ printf "Max process limit %s" (env "GOMAXPROCS") }}
-    }
+    {{- .SetCode 400 }}
+{
+  "error": "Bad Request",
+  "details": "Invalid parameters",
+  "reason": {{ printf "Max process limit %s" (env "GOMAXPROCS") }}
+}
   {{- else -}}
     {{- .SetCode 200 -}}
-    {
-      "status": "success",
-      "data": {
-        "user_id": {{ index $query "id" | first | default "unknown" }},
-        "gomaxprocs": {{ env "GOMAXPROCS" }}
-      }
-    }
+{
+  "status": "success",
+  "data": {
+    "user_id": {{ index $query "id" }},
+    "gomaxprocs": {{ env "GOMAXPROCS" }}
+  }
+}
   {{- end -}}
 {{- end -}}
 ```
@@ -91,10 +91,33 @@ Example request:
 
 ```bash
 # Request without debug parameter (should return 200)
-curl -i "http://localhost:8080/api/user?id=123"
+curl -i "http://localhost:8080?id=123"
+HTTP/1.1 200 OK
+Date: Sun, 22 Feb 2026 13:32:05 GMT
+Content-Length: 85
+Content-Type: text/plain; charset=utf-8
 
-# Request with debug parameter (should return 400)
-curl -i "http://localhost:8080/api/user?debug=true&id=123"
+{
+  "status": "success",
+  "data": {
+    "user_id": [123],
+    "gomaxprocs": 10
+  }
+}
+
+# Request with debug parameter (will return 400)
+curl -i "http://localhost:8080?debug=true"
+
+HTTP/1.1 400 Bad Request
+Date: Sun, 22 Feb 2026 13:30:57 GMT
+Content-Length: 98
+Content-Type: text/plain; charset=utf-8
+
+{
+  "error": "Bad Request",
+  "details": "Invalid parameters",
+  "reason": Max process limit 10
+}
 ```
 
 ## 🎯 Examples of use
