@@ -3,13 +3,9 @@ package stub
 import (
 	"bytes"
 	"text/template"
-)
 
-var funcs = template.FuncMap{
-	"base64encode": base64Encode,
-	"base64decode": base64Decode,
-	"env":          env,
-}
+	"github.com/Masterminds/sprig"
+)
 
 func (s *Service) Render(t string) ([]byte, error) {
 	buf, e := s._render(t)
@@ -33,7 +29,7 @@ func (s *Service) _render(t string) (*bytes.Buffer, error) {
 		return nil, err
 	}
 
-	tpl, err := template.New("main").Funcs(funcs).ParseFiles(files...)
+	tpl, err := template.New("main").Funcs(sprig.FuncMap()).ParseFiles(files...)
 	if err != nil {
 		return nil, err
 	}

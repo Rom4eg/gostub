@@ -82,7 +82,7 @@ Save the file, for example, /tmp/stubs/default/api/user:
 {
   "status": "success",
   "data": {
-    "user_id": {{ index $query "id" }},
+    "user_id": {{ index $query "id" | first }},
     "gomaxprocs": {{ env "GOMAXPROCS" }}
   }
 }
@@ -139,10 +139,6 @@ Content-Type: text/plain; charset=utf-8
 }
 ```
 
-## 📄 License
-GNU/GPLv3 License. More details in the LICENSE file
-
 ## 🤝 Contribution
 PR and ideas are welcome! Create an issue to discuss new features or bugs.
 
-### gostub — made with ❤️ for developers
