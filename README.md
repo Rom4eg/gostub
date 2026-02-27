@@ -20,6 +20,10 @@ gostub - This is a lightweight service for simulating responses to various APIs.
   * Error handling testing: simulating various HTTP statuses
   * Frontend development when the backend isn't ready yet
 
+## 📄 Docs
+
+For full documentation, visit [Read the Docs](https://gostub.readthedocs.io/).
+
 ## 📦 Installation
 
 ### From source
@@ -89,16 +93,6 @@ Save the file, for example, /tmp/stubs/default/api/user:
   {{- end -}}
 {{- end -}}
 ```
-
-### Available functions in the template
-
-
-| Function       | Description                                | Example                       |
-|----------------|--------------------------------------------|-------------------------------|
-| .SetCode(code) | Sets the HTTP response status              | {{ .SetCode 404 }}            |
-| env("VAR")     | Gets the value of an environment variable. | {{ env "HOME" }}              |
-| .Request       | Original HTTP request                      | .Request.Method, .Request.URL |
-
 
 ## 🚀 Launch
 
