@@ -30,7 +30,7 @@ For full documentation, visit [Read the Docs](https://gostub.readthedocs.io/).
 ```bash
 git clone https://github.com/rom4eg/gostub.git
 cd gostub
-make all
+make build
 ```
 
 ### Docker

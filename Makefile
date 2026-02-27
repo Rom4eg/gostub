@@ -35,6 +35,7 @@ define EXAMPLE_STUB
 {{- define "main" -}}
 	{{- .SetCode 200 -}}
 gostub is ready!
-Check out the documentation: https://github.com/rom4eg/gostub
+Check out the documentation: https://gostub.readthedocs.io/
+Visit the project repository: https://github.com/Rom4eg/gostub
 {{ end }}
 endef
