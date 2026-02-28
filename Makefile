@@ -1,7 +1,7 @@
 .PHONY: all build test clean generate
 
 PROGRAM := gostub
-CMD := $(CURDIR)/cmd
+CMD := $(CURDIR)/cmd/gostub
 BIN := $(CURDIR)/bin
 LD := "-extldflags '-static' -s -w"
 CCFLAGS := GOOS=linux GOARCH=amd64 CGO_ENABLED=0
