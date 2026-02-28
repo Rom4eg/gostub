@@ -1,9 +1,10 @@
 package service
 
 import (
-	"gostub/internal/service/http"
-	lm "gostub/log/mocks"
 	"testing"
+
+	"github.com/Rom4eg/gostub/internal/service/http"
+	lm "github.com/Rom4eg/gostub/log/mocks"
 
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/mock/gomock"

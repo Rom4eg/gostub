@@ -1,9 +1,10 @@
 package http
 
 import (
-	"gostub/log"
 	"net/http"
 	"path/filepath"
+
+	"github.com/Rom4eg/gostub/log"
 )
 
 type Service struct {

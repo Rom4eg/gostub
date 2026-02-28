@@ -2,9 +2,10 @@ package http
 
 import (
 	"context"
-	"gostub/internal/service/http/mocks"
-	lm "gostub/log/mocks"
 	"testing"
+
+	"github.com/Rom4eg/gostub/internal/service/http/mocks"
+	lm "github.com/Rom4eg/gostub/log/mocks"
 
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/mock/gomock"

@@ -2,9 +2,10 @@ package manager
 
 import (
 	"context"
-	"gostub/internal/manager/mocks"
-	lm "gostub/log/mocks"
 	"testing"
+
+	"github.com/Rom4eg/gostub/internal/manager/mocks"
+	lm "github.com/Rom4eg/gostub/log/mocks"
 
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/mock/gomock"

@@ -1,6 +1,6 @@
 package manager
 
-import "gostub/log"
+import "github.com/Rom4eg/gostub/log"
 
 type IManager interface {
 	StartService(name string, s IService) error

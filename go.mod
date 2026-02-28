@@ -1,4 +1,4 @@
-module gostub
+module github.com/Rom4eg/gostub
 
 go 1.25.2
 

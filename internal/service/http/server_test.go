@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"testing"
 
-	lm "gostub/log/mocks"
+	lm "github.com/Rom4eg/gostub/log/mocks"
 
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/mock/gomock"

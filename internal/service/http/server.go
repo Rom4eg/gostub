@@ -3,8 +3,9 @@ package http
 import (
 	"context"
 	"fmt"
-	"gostub/log"
 	"net/http"
+
+	"github.com/Rom4eg/gostub/log"
 )
 
 //go:generate mockgen -typed -destination=mocks/server.go -package=mocks . IServer

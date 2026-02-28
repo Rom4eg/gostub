@@ -10,8 +10,9 @@
 package mocks
 
 import (
-	log "gostub/log"
 	reflect "reflect"
+
+	log "github.com/Rom4eg/gostub/log"
 
 	gomock "go.uber.org/mock/gomock"
 )

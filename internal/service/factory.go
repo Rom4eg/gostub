@@ -1,8 +1,8 @@
 package service
 
 import (
-	httpsrv "gostub/internal/service/http"
-	"gostub/log"
+	httpsrv "github.com/Rom4eg/gostub/internal/service/http"
+	"github.com/Rom4eg/gostub/log"
 )
 
 type Service interface {

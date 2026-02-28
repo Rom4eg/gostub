@@ -237,3 +237,6 @@ bin
 stubs
 config.yaml
 __debug*
+!docs/
+docs/.venv/
+docs/public/

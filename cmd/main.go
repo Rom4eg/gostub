@@ -4,12 +4,13 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"gostub/config"
-	"gostub/flags"
-	"gostub/internal/manager"
-	"gostub/internal/service"
-	"gostub/log"
 	"net/http"
+
+	"github.com/Rom4eg/gostub/config"
+	"github.com/Rom4eg/gostub/flags"
+	"github.com/Rom4eg/gostub/internal/manager"
+	"github.com/Rom4eg/gostub/internal/service"
+	"github.com/Rom4eg/gostub/log"
 
 	"os"
 	"os/signal"

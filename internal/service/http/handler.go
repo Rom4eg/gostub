@@ -2,8 +2,9 @@ package http
 
 import (
 	"fmt"
-	"gostub/internal/stub"
 	"net/http"
+
+	"github.com/Rom4eg/gostub/internal/stub"
 )
 
 func (s *Service) Handler(w http.ResponseWriter, r *http.Request) {
