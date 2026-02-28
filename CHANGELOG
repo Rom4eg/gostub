@@ -1,0 +1,7 @@
+## [0.1.0] - 2026-02-28
+
+### Added
+ - first public release
+ - basic functions
+ - `go install github.com/Rom4eg/gostub/cmd/gostub@v0.1.0`
+ - `rom4eg196/gostub:v0.1.0`

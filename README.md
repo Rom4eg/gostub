@@ -27,7 +27,7 @@ For full documentation, visit [Read the Docs](https://gostub.readthedocs.io/).
 ## 📦 Installation
 
 ```bash
-go install github.com/Rom4eg/gostub/cmd/gostub@0.1
+go install github.com/Rom4eg/gostub/cmd/gostub@latest
 ```
 
 ### From source
@@ -39,7 +39,7 @@ make build
 
 ### Docker
 ```
-docker pull rom4eg196/gostub
+docker pull rom4eg196/gostub:latest
 docker run --rm -p 8080:8080 rom4eg196/gostub
 ```
 

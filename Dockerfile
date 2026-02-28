@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN make build
+RUN make clean && make build
 
 FROM scratch
 
