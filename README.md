@@ -26,6 +26,10 @@ For full documentation, visit [Read the Docs](https://gostub.readthedocs.io/).
 
 ## 📦 Installation
 
+```bash
+go install github.com/Rom4eg/gostub/cmd/gostub@0.1
+```
+
 ### From source
 ```bash
 git clone https://github.com/rom4eg/gostub.git
