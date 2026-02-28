@@ -1,7 +1,7 @@
 .PHONY: all build test clean generate
 
 PROGRAM := gostub
-CMD := $(CURDIR)
+CMD := $(CURDIR)/cmd
 BIN := $(CURDIR)/bin
 LD := "-extldflags '-static' -s -w"
 CCFLAGS := GOOS=linux GOARCH=amd64 CGO_ENABLED=0
@@ -9,7 +9,7 @@ CCFLAGS := GOOS=linux GOARCH=amd64 CGO_ENABLED=0
 export EXAMPLE_STUB
 
 build: $(CMD) | $(BIN)
-	@$(CCFLAGS) go build -ldflags=$(LD) -o $(BIN)/$(PROGRAM) $(CMD)
+	@$(CCFLAGS) go build -ldflags=$(LD) -o $(BIN)/$(PROGRAM) $(CMD)/**
 	@cp $(CURDIR)/config.example.yml $(BIN)/config.yaml
 	@mkdir -p $(BIN)/stubs
 	@touch $(BIN)/stubs/.placeholder
