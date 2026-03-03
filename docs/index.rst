@@ -19,4 +19,4 @@ Check out the :doc:`usage` section for further information.
    installation
    configuration
    creating-stubs
-
+   functions
