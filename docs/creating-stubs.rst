@@ -88,7 +88,7 @@ Loops (iterating through collections)
        {
          "users": [
            {{- $query := .Request.URL.Query -}}
-           {{- $ids := index $query "id" -}}  {{/* получаем все значения id */}}
+           {{- $ids := index $query "id" -}}
            {{- range $index, $id := $ids -}}
              {{- if $index -}}, {{- end -}}
              {

@@ -7,10 +7,8 @@ During development and debugging, stubs for external services are quickly create
 when the real service is unavailable or difficult to use.
 
 The idea is simple: the requested URL is converted into a path to a file on disk,
-and the file's contents are processed as a `Go template <https://golang.org/pkg/text/template/>`_,
+and the file's contents are processed as a `Go template <https://golang.org/pkg/text/template/>`__,
 which allows you to create dynamic responses of any complexity.
-
-Check out the :doc:`usage` section for further information.
 
 .. toctree::
    :maxdepth: 2
