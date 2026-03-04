@@ -154,8 +154,8 @@ fromJson, mustFromJson
 
 .. code-block:: go
 
-   fromJson(value string) struct{}
-   mustFromJson(value string) struct{}
+   fromJson(value string) interface{}
+   mustFromJson(value string) interface{}, error
 
 The ``fromJson`` decodes a JSON document into a structure.
 If the input cannot be decoded as JSON the function will return an empty string.
@@ -184,7 +184,7 @@ toJson, mustToJson
 .. code-block:: go
 
    toJson(value struct{}) string
-   mustToJson(value struct{}) string
+   mustToJson(value struct{}) string, error
 
 The ``toJson`` function encodes an item into a JSON string.
 If the item cannot be converted to JSON the function will return an empty string.
@@ -213,7 +213,7 @@ toPrettyJson, mustToPrettyJson
 .. code-block:: go
 
    toPrettyJson(value struct{}) string
-   mustToPrettyJson(value struct{}) string
+   mustToPrettyJson(value struct{}) string, error
 
 The ``fromJson`` function encodes an item into a pretty (indented) JSON string.
 
@@ -228,7 +228,7 @@ toRawJson, mustToRawJson
 .. code-block:: go
 
    toRawJson(value struct{}) string
-   mustToRawJson(value struct{}) string
+   mustToRawJson(value struct{}) string, error
 
 The ``fromJson`` function encodes an item into JSON string with HTML characters unescaped.
 
