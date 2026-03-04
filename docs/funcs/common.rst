@@ -14,16 +14,16 @@ default
 
    default(defaultValue any, value any) any
 
-if ``value`` evaluates to a non-empty value, it will be used. But if it is empty, ``defaultValue`` will be returned instead.
+If ``value`` evaluates to a non-empty value, it will be used. But if it is empty, ``defaultValue`` will be returned instead.
 
-The definition of “empty” depends on type:
+The definition of “empty” depends on the type:
 
 * Numeric: ``0``
-* String: ``“”``
+* String: ``""``
 * Lists: ``[]``
 * Dicts: ``{}``
 * Boolean: ``false``
-* And always nil (aka null)
+* nil (aka null)
 
 For structs, there is no definition of empty, so a struct will never return the default.
 
@@ -51,8 +51,8 @@ empty
 
    empty(value any) bool
 
-The empty function returns ``true`` if the given value is considered empty, and false otherwise.
-The empty values are listed in the :ref:`func-toJson` section.
+The ``empty`` function returns ``true`` if the given value is considered empty and false otherwise.
+The ``empty`` values are listed in the :ref:`func-default` section.
 
 **Example:**
 
@@ -82,9 +82,9 @@ coalesce
 
 .. code-block:: go
 
-   coalesce(values ...any) bool
+   coalesce(values ...any) any
 
-The ``coalesce`` function takes a list of values and returns the first non-empty one.
+The ``coalesce`` function takes multiple values and returns the first non-empty one.
 
 **Example:**
 
@@ -109,7 +109,7 @@ all
 
    all(values ...any) bool
 
-The ``all`` takes a list of values and returns ``true`` if all values are non-empty.
+The ``all`` function takes a list of values and returns ``true`` if all values are non-empty.
 
 **Example:**
 
@@ -161,8 +161,8 @@ fromJson, mustFromJson
    fromJson(value string) interface{}
    mustFromJson(value string) interface{}, error
 
-The ``fromJson`` decodes a JSON document into a structure.
-If the input cannot be decoded as JSON the function will return an empty string.
+The ``fromJson`` function decodes a JSON document into a structure.
+If the input cannot be decoded as JSON, the function will return an empty string.
 ``mustFromJson`` will return an error in case the JSON is invalid.
 
 **Example:**
@@ -187,8 +187,8 @@ toJson, mustToJson
 
 .. code-block:: go
 
-   toJson(value struct{}) string
-   mustToJson(value struct{}) string, error
+   toJson(value any) string
+   mustToJson(value any) string, error
 
 The ``toJson`` function encodes an item into a JSON string.
 If the item cannot be converted to JSON the function will return an empty string.
@@ -198,13 +198,13 @@ If the item cannot be converted to JSON the function will return an empty string
 
 .. code-block:: html
 
-   Json Request {{ toJson .Request.URL }}
+   JSON Request {{ toJson .Request.URL }}
 
 The above returns
 
 .. code-block:: text
 
-    Json Request {"Scheme":"","Opaque":"","User":null,"Host":"","Path":"/","RawPath":"","OmitHost":false,"ForceQuery":false,"RawQuery":"","Fragment":"","RawFragment":""}
+    JSON Request {"Scheme":"","Opaque":"","User":null,"Host":"","Path":"/","RawPath":"","OmitHost":false,"ForceQuery":false,"RawQuery":"","Fragment":"","RawFragment":""}
 
 ----
 
@@ -216,10 +216,36 @@ toPrettyJson, mustToPrettyJson
 
 .. code-block:: go
 
-   toPrettyJson(value struct{}) string
-   mustToPrettyJson(value struct{}) string, error
+   toPrettyJson(value any) string
+   mustToPrettyJson(value any) string, error
 
-The ``fromJson`` function encodes an item into a pretty (indented) JSON string.
+The ``toPrettyJson`` function encodes an item into a pretty (indented) JSON string.
+If the input cannot be decoded as JSON, the function will return an empty string.
+``mustToPrettyJson`` will return an error in case the JSON is invalid.
+
+**Example:**
+
+.. code-block:: html
+
+   JSON Request {{ toPrettyJson .Request.URL }}
+
+The above returns
+
+.. code-block:: text
+
+   JSON Request {
+      "Scheme": "",
+      "Opaque": "",
+      "User": null,
+      "Host": "",
+      "Path": "/",
+      "RawPath": "",
+      "OmitHost": false,
+      "ForceQuery": false,
+      "RawQuery": "days=1",
+      "Fragment": "",
+      "RawFragment": ""
+   }
 
 ----
 
@@ -231,10 +257,24 @@ toRawJson, mustToRawJson
 
 .. code-block:: go
 
-   toRawJson(value struct{}) string
-   mustToRawJson(value struct{}) string, error
+   toRawJson(value any) string
+   mustToRawJson(value any) string, error
 
-The ``fromJson`` function encodes an item into JSON string with HTML characters unescaped.
+The ``toRawJson`` function encodes an item into JSON string with HTML characters unescaped.
+If the input cannot be decoded as JSON, the function will return an empty string.
+``mustToRawJson`` will return an error in case the JSON is invalid.
+
+**Example:**
+
+.. code-block:: html
+
+   JSON Request {{ toRawJson .Request.URL }}
+
+The above returns
+
+.. code-block:: text
+
+   JSON Request {"Scheme":"","Opaque":"","User":null,"Host":"","Path":"/","RawPath":"","OmitHost":false,"ForceQuery":false,"RawQuery":"days=1","Fragment":"","RawFragment":""}
 
 ----
 
@@ -249,27 +289,24 @@ ternary
 
 The ``ternary`` function takes two values, and a test value.
 If the ``testValue`` is true, the ``trueValue`` will be returned.
-If the ``testValue`` is empty, the ``falseValue`` will be returned.
-This is similar to the ``C`` ternary operator.
+If the ``testValue`` is false, the ``falseValue`` will be returned.
+This is similar to the *C* ternary operator.
 
 **Example:**
 
 .. code-block:: html
 
-    {
+   {
       "debug": {{ ternary "true" "false" (eq (.Request.URL.Query.Get "mode") "debug") }}
-    }
-
-.. code-block:: bash
-
-    curl "http://localhost:8080?mode=debug"
+   }
 
 The above returns
 
 .. code-block:: text
 
-  {
-    "debug": true
-  }
+   curl "http://localhost:8080?mode=debug"
+   {
+      "debug": true
+   }
 
 ----

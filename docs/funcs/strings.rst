@@ -5,7 +5,7 @@ Gostub has a number of string manipulation functions.
 
 ----
 
-.. _func-default:
+.. _func-trim:
 
 trim
 ====
@@ -14,7 +14,7 @@ trim
 
    trim(value string) string
 
-The ``trim`` function removes space from either side of a ``value``
+The ``trim`` function removes space from either side of a ``value``.
 
 **Example:**
 
@@ -39,13 +39,13 @@ trimAll
 
    trimAll(trimChar string, value string) string
 
-The ``trimAll`` function remove given characters from the front or back of a string
+The ``trimAll`` function removes given characters from the front and back of a string.
 
 **Example:**
 
 .. code-block:: html
 
-   The price is {{ trimAll "$" "$5.00" }}
+   The price is {{ trimAll "$" "$$5.00$$" }}
 
 The above returns
 
@@ -62,9 +62,9 @@ trimSuffix
 
 .. code-block:: go
 
-   trimSuffix(trimChar string, value string) string
+   trimSuffix(suffix string, value string) string
 
-The ``trimSuffix`` function trim just the suffix from a string
+The ``trimSuffix`` function trims just the suffix from a string.
 
 **Example:**
 
@@ -87,9 +87,9 @@ trimPrefix
 
 .. code-block:: go
 
-   trimPrefix(trimChar string, value string) string
+   trimPrefix(prefix string, value string) string
 
-The ``trimPrefix`` function trim just the prefix from a string
+The ``trimPrefix`` function trims just the prefix from a string.
 
 **Example:**
 
@@ -114,13 +114,13 @@ upper
 
    upper(value string) string
 
-The ``upper`` function convert the entire string to uppercase
+The ``upper`` function converts the entire string to uppercase.
 
 **Example:**
 
 .. code-block:: html
 
-   {{ upper "this text is uppercase"}}
+   {{ upper "this text is uppercase" }}
 
 The above returns
 
@@ -139,13 +139,13 @@ lower
 
    lower(value string) string
 
-The ``lower`` function convert the entire string to lowercase
+The ``lower`` function converts the entire string to lowercase.
 
 **Example:**
 
 .. code-block:: html
 
-   {{ lower "THIS TEXT IS LOWERCASE"}}
+   {{ lower "THIS TEXT IS LOWERCASE" }}
 
 The above returns
 
@@ -164,13 +164,13 @@ title
 
    title(value string) string
 
-The ``title`` function convert to title case
+The ``title`` function converts to title case.
 
 **Example:**
 
 .. code-block:: html
 
-   {{ untitle "THIS TEXT IS LOWERCASE" }}
+   {{ title "hello world" }}
 
 The above returns
 
@@ -189,19 +189,19 @@ untitle
 
    untitle(value string) string
 
-The ``untitle`` function remove title casing
+The ``untitle`` function removes title casing.
 
 **Example:**
 
 .. code-block:: html
 
-   {{ untitle "This text Is UTITLED" }}
+   {{ untitle "This text Is UNTITLED" }}
 
 The above returns
 
 .. code-block:: text
 
-   this text is uTITLED
+   this text is uNTITLED
 
 ----
 
@@ -214,7 +214,7 @@ repeat
 
    repeat(count int, value string) string
 
-The ``repeat`` function repeat a string multiple times
+The ``repeat`` function repeats a string multiple times.
 
 **Example:**
 
@@ -239,7 +239,7 @@ substr
 
    substr(start int, end int, value string) string
 
-The ``substr`` function get a substring from a string.
+The ``substr`` function gets a substring from a string.
 
 **Example:**
 
@@ -264,7 +264,7 @@ nospace
 
    nospace(value string) string
 
-The ``nospace`` function remove all whitespace from a string.
+The ``nospace`` function removes all whitespace from a string.
 
 **Example:**
 
@@ -289,7 +289,7 @@ trunc
 
    trunc(length int, value string) string
 
-The ``trunc`` function truncate a string to the specified length
+The ``trunc`` function truncates a string to the specified length.
 
 **Example:**
 
@@ -314,7 +314,7 @@ abbrev
 
    abbrev(length int, value string) string
 
-The ``abbrev`` function truncate (:ref:`func-trunc`) a string with ellipses
+The ``abbrev`` function truncates (:ref:`func-trunc`) a string with ellipsis.
 
 **Example:**
 
@@ -339,7 +339,7 @@ abbrevboth
 
    abbrevboth(offset int, size int, value string) string
 
-The ``abbrevboth`` function abbreviate both sides (:ref:`func-abbr`) a string with ellipses
+The ``abbrevboth`` function abbreviates both sides (:ref:`func-abbrev`) of a string with ellipsis.
 
 **Example:**
 
@@ -364,7 +364,7 @@ initials
 
    initials(value string) string
 
-The ``initials`` function given multiple words, take the first letter of each word and combine
+The ``initials`` function takes multiple words and returns the first letter of each word combined.
 
 **Example:**
 
@@ -389,7 +389,7 @@ randAlphaNum
 
    randAlphaNum(length int) string
 
-The ``randAlphaNum`` generate cryptographically secure (uses crypto/rand) random strings.
+The ``randAlphaNum`` function generates cryptographically secure (uses crypto/rand) random strings.
 Uses 0-9a-zA-Z.
 
 **Example:**
@@ -415,7 +415,7 @@ randAlpha
 
    randAlpha(length int) string
 
-The ``randAlpha`` is the same as :ref:`func-randAlphaNum` but uses ``a-zA-Z`` character set
+The ``randAlpha`` function is the same as :ref:`func-randAlphaNum` but uses ``a-zA-Z`` character set.
 
 **Example:**
 
@@ -440,7 +440,7 @@ randNumeric
 
    randNumeric(length int) string
 
-The ``randNumeric`` is the same as :ref:`func-randAlphaNum` but uses ``0-9`` character set
+The ``randNumeric`` function is the same as :ref:`func-randAlphaNum` but uses ``0-9`` character set.
 
 **Example:**
 
@@ -465,7 +465,7 @@ randAscii
 
    randAscii(length int) string
 
-The ``randAscii`` is the same as :ref:`func-randAlphaNum` but uses all printable ASCII characters
+The ``randAscii`` function is the same as :ref:`func-randAlphaNum` but uses all printable ASCII characters.
 
 **Example:**
 
@@ -490,7 +490,7 @@ wrap
 
    wrap(length int, value string) string
 
-The ``wrap`` function wrap text at a given column count
+The ``wrap`` function wraps text at a given column count.
 
 **Example:**
 
@@ -517,8 +517,8 @@ wrapWith
 
    wrapWith(length int, wrapChar string, value string) string
 
-The ``wrapWith`` function works as :ref:`func_wrap`, but lets you specify the string to wrap with.
-(:ref:`func_wrap` uses \n)
+The ``wrapWith`` function works like :ref:`func-wrap`, but lets you specify the string to use as a line separator.
+(:ref:`func-wrap` uses \n)
 
 **Example:**
 
@@ -543,7 +543,7 @@ contains
 
    contains(substr string, value string) bool
 
-The ``contains`` function test if one string is contained inside of another
+The ``contains`` function tests if a substring is contained within a string.
 
 **Example:**
 
@@ -568,7 +568,7 @@ hasPrefix
 
    hasPrefix(substr string, value string) bool
 
-The ``hasPrefix`` function test whether a string has a given prefix
+The ``hasPrefix`` function tests whether a string has a given prefix.
 
 **Example:**
 
@@ -593,7 +593,7 @@ hasSuffix
 
    hasSuffix(substr string, value string) bool
 
-The ``hasSuffix`` function test whether a string has a given suffix
+The ``hasSuffix`` function tests whether a string has a given suffix.
 
 **Example:**
 
@@ -618,7 +618,7 @@ quote
 
    quote(value string) string
 
-The ``quote`` function wrap a string in double quotes
+The ``quote`` function wraps a string in double quotes.
 
 **Example:**
 
@@ -643,7 +643,7 @@ squote
 
    squote(value string) string
 
-The ``squote`` function wrap a string in single quotes
+The ``squote`` function wraps a string in single quotes.
 
 **Example:**
 
@@ -668,7 +668,7 @@ cat
 
    cat(value ...string) string
 
-The ``cat`` function concatenates multiple strings together into one, separating them with spaces
+The ``cat`` function concatenates multiple strings together into one, separating them with spaces.
 
 **Example:**
 
@@ -694,13 +694,21 @@ indent
    indent(width int, value string) string
 
 The ``indent`` function indents every line in a given string to the specified indent width.
-This is useful when aligning multi-line strings
+This is useful when aligning multi-line strings.
 
 **Example:**
 
 .. code-block:: html
 
    {{ indent 6 "first\nsecond\nthird" }}
+
+The above returns
+
+.. code-block:: text
+
+   ······first
+   ······second
+   ······third
 
 ----
 
@@ -713,13 +721,22 @@ nindent
 
    nindent(width int, value string) string
 
-The ``nindent`` function is the same as the :ref:`func_indent` function, but prepends a new line to the beginning of the string.
+The ``nindent`` function is the same as the :ref:`func-indent` function, but prepends a new line to the beginning of the string.
 
 **Example:**
 
 .. code-block:: html
 
    {{ nindent 6 "first\nsecond\nthird" }}
+
+The above returns
+
+.. code-block:: text
+
+   \n
+   ······first
+   ······second
+   ······third
 
 ----
 
@@ -732,7 +749,7 @@ replace
 
    replace(replace string, replaceWith string, source string) string
 
-The ``nindent`` function perform simple string replacement
+The ``replace`` function performs simple string replacement.
 
 **Example:**
 
@@ -757,7 +774,7 @@ plural
 
    plural(singular string, plural string, length int) string
 
-The ``plural`` function pluralize a string.
+The ``plural`` function pluralizes a string.
 
 It does not currently support languages with more complex pluralization rules.
 And 0 is considered a plural because the English language treats it as such “zero days”.
@@ -766,17 +783,19 @@ And 0 is considered a plural because the English language treats it as such “z
 
 .. code-block:: html
 
-   {{ $days := (.Request.URL.Query.Get "days") | default 0}}
+   {{ $days := (.Request.URL.Query.Get "days") | default 0 }}
    this task takes up to {{ $days }} {{ plural "day" "days" (int $days) }}
 
 The above returns
 
 .. code-block:: text
 
-   curl "http://localhost:8080?days=1"
+   $ curl "http://localhost:8080?days=4"
+   this task takes up to 4 days
 
 .. code-block:: text
 
+   $ curl "http://localhost:8080?days=1"
    this task takes up to 1 day
 
 ----
@@ -790,7 +809,7 @@ snakecase
 
    snakecase(value string) string
 
-The ``snakecase`` function convert string from camelCase to snake_case.
+The ``snakecase`` function converts string from camelCase to snake_case.
 
 **Example:**
 
@@ -815,7 +834,7 @@ camelcase
 
    camelcase(value string) string
 
-The ``camelcase`` function convert string from snake_case to camelCase.
+The ``camelcase`` function converts string from snake_case to camelCase.
 
 **Example:**
 
@@ -841,7 +860,7 @@ kebabcase
 
    kebabcase(value string) string
 
-The ``kebabcase`` function convert string from camelCase to kebab-case.
+The ``kebabcase`` function converts string from camelCase to kebab-case.
 
 **Example:**
 
@@ -866,7 +885,7 @@ swapcase
 
    swapcase(value string) string
 
-The ``swapcase`` function swap the case of a string using a word based algorithm.
+The ``swapcase`` function swaps the case of a string using a word based algorithm.
 
 Conversion algorithm:
 
@@ -899,7 +918,7 @@ shuffle
 
    shuffle(value string) string
 
-The ``shuffle`` function shuffle a string
+The ``shuffle`` function randomly shuffles a string.
 
 **Example:**
 
@@ -951,11 +970,11 @@ regexFindAll, mustRegexFindAll
 
 .. code-block:: go
 
-   regexFindAll(re string, value string, count int) []string
-   mustRegexFindAll(re string, value string, count int) []string, error
+   regexFindAll(re string, value string, n int) []string
+   mustRegexFindAll(re string, value string, n int) []string, error
 
 The ``regexFindAll`` function returns a slice of all matches of the regular expression in the input string.
-The last parameter n determines the number of substrings to return, where -1 means return all matches
+The last parameter ``n`` determines the number of substrings to return, where -1 means return all matches.
 
 ``regexFindAll`` panics if there is a problem and ``mustRegexFindAll`` returns an error to the template engine if there is a problem.
 
@@ -984,7 +1003,7 @@ regexFind, mustRegexFind
    regexFind(re string, value string) string
    mustRegexFind(re string, value string) string, error
 
-The ``regexFind`` function return the first (left most) match of the regular expression in the input string
+The ``regexFind`` function returns the first (leftmost) match of the regular expression in the input string.
 
 ``regexFind`` panics if there is a problem and ``mustRegexFind`` returns an error to the template engine if there is a problem.
 
@@ -1014,7 +1033,7 @@ regexReplaceAll, mustRegexReplaceAll
    mustRegexReplaceAll(re string, value string, replace string) string, error
 
 The ``regexReplaceAll`` function returns a copy of the input string, replacing matches of the Regexp with the replacement string replacement.
-Inside string replacement, $ signs are interpreted as in Expand, so for instance $1 represents the text of the first submatch
+Inside string replacement, $ signs are interpreted as in Expand, so for instance $1 represents the text of the first submatch.
 
 ``regexReplaceAll`` panics if there is a problem and ``mustRegexReplaceAll`` returns an error to the template engine if there is a problem.
 
@@ -1044,7 +1063,7 @@ regexReplaceAllLiteral, mustRegexReplaceAllLiteral
    mustRegexReplaceAllLiteral(re string, value string, replace string) string, error
 
 The ``regexReplaceAllLiteral`` function returns a copy of the input string, replacing matches of the Regexp with the replacement string replacement.
-The replacement string is substituted directly, without using Expand
+The replacement string is substituted directly, without using Expand.
 
 ``regexReplaceAllLiteral`` panics if there is a problem and ``mustRegexReplaceAllLiteral`` returns an error to the template engine if there is a problem.
 
@@ -1073,8 +1092,8 @@ regexSplit, mustRegexSplit
    regexSplit(re string, value string, count int) []string
    mustRegexSplit(re string, value string, count int) []string, error
 
-The ``regexSplit`` function returns a copy of the input string, replacing matches of the Regexp with the replacement string replacement.
-The replacement string is substituted directly, without using Expand
+The ``regexSplit`` function slices the input string into substrings separated by the expression and returns a slice of the substrings between those expression matches.
+The last parameter ``n`` determines the number of substrings to return, where -1 means return all matches.
 
 ``regexSplit`` panics if there is a problem and ``mustRegexSplit`` returns an error to the template engine if there is a problem.
 
