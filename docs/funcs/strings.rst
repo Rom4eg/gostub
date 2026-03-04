@@ -1,5 +1,9 @@
-Strings
-*******
+String Functions
+****************
+
+Gostub has a number of string manipulation functions.
+
+----
 
 .. _func-default:
 

@@ -1,5 +1,9 @@
-Common
-******
+Common Functions
+****************
+
+Gostub provides tools for setting default values for templates.
+
+----
 
 .. _func-default:
 
