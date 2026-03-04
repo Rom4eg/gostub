@@ -11,3 +11,5 @@ The functions are grouped into categories for easy searching.
 .. include:: funcs/common.rst
 
 .. include:: funcs/strings.rst
+
+.. include:: funcs/string_slice.rst
