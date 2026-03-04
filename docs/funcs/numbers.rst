@@ -27,6 +27,7 @@ The above returns
 .. code-block:: text
 
    6
+
 ----
 
 .. _func-add1:

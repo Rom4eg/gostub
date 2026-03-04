@@ -15,3 +15,5 @@ The functions are grouped into categories for easy searching.
 .. include:: funcs/string_slice.rst
 
 .. include:: funcs/numbers.rst
+
+.. include:: funcs/number_slice.rst
