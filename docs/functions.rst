@@ -21,3 +21,5 @@ The functions are grouped into categories for easy searching.
 .. include:: funcs/floats.rst
 
 .. include:: funcs/date.rst
+
+.. include:: funcs/encoding.rst
