@@ -36,3 +36,5 @@ The functions are grouped into categories for easy searching.
 
 .. include:: funcs/flow.rst
 
+.. include:: funcs/uuid.rst
+
