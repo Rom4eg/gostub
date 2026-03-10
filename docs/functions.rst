@@ -40,3 +40,5 @@ The functions are grouped into categories for easy searching.
 
 .. include:: funcs/os.rst
 
+.. include:: funcs/semver.rst
+
