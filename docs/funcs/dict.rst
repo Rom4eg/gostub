@@ -1,7 +1,7 @@
 Dictionaries and Dict Functions
 *******************************
 
-Gostub provides a key/value storage type called a dict (short for “dictionary”, as in Python). A dict is an unorder type.
+Gostub provides a key/value storage type called a dict (short for “dictionary”, as in Python). A dict is an unordered type.
 
 The key to a dictionary must be a string. However, the value can be any type, even another dict or list.
 
@@ -16,7 +16,7 @@ dict
 
 .. code-block:: go
 
-   dict(items []any) map[string]any
+   dict(items ...any) map[string]any
 
 The ``dict`` function creates a dictionary.
 
@@ -99,7 +99,7 @@ unset
    unset(dict map[string]any, key string) map[string]any
 
 The ``unset`` function deletes the key from the map.
-Note that if the key is not found, this operation will simply return. No error will be generated.
+Note that if the key is not found, this operation will simply return without an error.
 
 **Example:**
 
@@ -152,7 +152,7 @@ pluck
 
    pluck(key string, dicts ...map[string]any) []any
 
-The ``pluck`` function searches the given key in all given dict and returns a list of coresponds value.
+The ``pluck`` function searches for the given key in all given dicts and returns a list of corresponding values.
 
 **Example:**
 
@@ -180,7 +180,7 @@ dig
 
    dig(keys ...string, defaultValue any, dict map[string]any) any
 
-The ``dig`` function traverses a nested set of dicts, selecting keys from a list of values.
+The ``dig`` function traverses a nested dictionary structure, selecting keys sequentially.
 It returns a ``defaultValue`` if any of the keys are not found at the associated dict.
 
 **Example:**
