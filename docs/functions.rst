@@ -23,3 +23,6 @@ The functions are grouped into categories for easy searching.
 .. include:: funcs/date.rst
 
 .. include:: funcs/encoding.rst
+
+.. include:: funcs/list.rst
+
