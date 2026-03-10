@@ -38,3 +38,5 @@ The functions are grouped into categories for easy searching.
 
 .. include:: funcs/uuid.rst
 
+.. include:: funcs/os.rst
+
