@@ -3,12 +3,13 @@ Path Functions
 
 While Gostub does not grant access to the filesystem, it does provide functions for working with strings that follow file path conventions.
 
-Paths separated by the slash character (/), are processed by the ``path`` package.
+Paths separated by the slash character (/), are processed by the `path <https://pkg.go.dev/path>`__ package.
 
 **Examples:**
 
-The Linux and MacOS filesystems: /home/user/file, /etc/config.
-The path component of URIs: https://example.com/some/content/, ftp://example.com/file/.
+|   The Linux and MacOS filesystems: ``/home/user/file``, ``/etc/config``.
+|   The path component of URIs: ``https://example.com/some/content/``, ``ftp://example.com/file/``.
+
 
 ----
 
