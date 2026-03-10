@@ -30,3 +30,5 @@ The functions are grouped into categories for easy searching.
 
 .. include:: funcs/conv.rst
 
+.. include:: funcs/path.rst
+
