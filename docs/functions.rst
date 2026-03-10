@@ -32,3 +32,5 @@ The functions are grouped into categories for easy searching.
 
 .. include:: funcs/path.rst
 
+.. include:: funcs/filepath.rst
+
