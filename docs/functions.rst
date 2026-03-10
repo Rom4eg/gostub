@@ -34,3 +34,5 @@ The functions are grouped into categories for easy searching.
 
 .. include:: funcs/filepath.rst
 
+.. include:: funcs/flow.rst
+
