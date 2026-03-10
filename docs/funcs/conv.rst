@@ -39,7 +39,7 @@ float64
 
    float64(val any) float64
 
-The ``float64`` function converts a ``val`` to an float64.
+The ``float64`` function converts a ``val`` to a float64.
 
 **Example:**
 
@@ -114,7 +114,7 @@ toDecimal
 
    toDecimal(val any) int64
 
-The ``toDecimal`` function converts a unix octal to a int64.
+The ``toDecimal`` function converts a Unix octal to a int64.
 
 **Example:**
 
