@@ -42,3 +42,5 @@ The functions are grouped into categories for easy searching.
 
 .. include:: funcs/semver.rst
 
+.. include:: funcs/reflection.rst
+
