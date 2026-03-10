@@ -28,3 +28,5 @@ The functions are grouped into categories for easy searching.
 
 .. include:: funcs/dict.rst
 
+.. include:: funcs/conv.rst
+
