@@ -2,7 +2,7 @@
 Creating stubs
 ##############
 
-Gostub uses the built-in `Go template package <https://golang.org/pkg/text/template/>`__
+gostub uses the built-in `Go template package <https://golang.org/pkg/text/template/>`__
 (text/template) to generate dynamic responses.
 This provides a powerful and flexible tool for creating any response type.
 

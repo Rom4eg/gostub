@@ -1,7 +1,7 @@
 Cryptographic Functions
 ************************************
 
-Gostub provides a couple of advanced cryptographic functions.
+gostub provides a couple of advanced cryptographic functions.
 
 ----
 

@@ -1,9 +1,9 @@
 Semantic Version Functions
 **************************
 
-Some version schemes are easily parseable and comparable. Gostub provides functions for working with `SemVer 2 <http://semver.org/>`__ versions.
+Some version schemes are easily parseable and comparable. gostub provides functions for working with `SemVer 2 <http://semver.org/>`__ versions.
 
-Gostub uses the `Masterminds semver package <https://github.com/Masterminds/semver>`__
+gostub uses the `Masterminds semver package <https://github.com/Masterminds/semver>`__
 
 
 .. _struct-version:

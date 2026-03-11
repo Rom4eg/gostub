@@ -1,7 +1,7 @@
 Path Functions
 **************
 
-While Gostub does not grant access to the filesystem, it does provide functions for working with strings that follow file path conventions.
+While gostub does not grant access to the filesystem, it does provide functions for working with strings that follow file path conventions.
 
 Paths separated by the slash character (/), are processed by the `path <https://pkg.go.dev/path>`__ package.
 

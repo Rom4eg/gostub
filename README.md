@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/github/license/rom4eg/gostub)](LICENSE)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/rom4eg/gostub/go.yml)](https://github.com/rom4eg/gostub/actions)
 
-Gostub is an HTTP server that simulates API responses. It is used during development and testing to replace external services that are unavailable, unreliable, or impractical to use.
+gostub is an HTTP server that simulates API responses. It is used during development and testing to replace external services that are unavailable, unreliable, or impractical to use.
 
 ## Features
   * __Go templates:__ Supports Go's templating engine for dynamic response generation.

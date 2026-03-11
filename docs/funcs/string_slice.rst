@@ -1,7 +1,7 @@
 String Slice Functions
 **********************
 
-These functions operate on or generate slices of strings. In Go, a slice is a growable array. In Gostub, it’s a special case of a ``list``.
+These functions operate on or generate slices of strings. In Go, a slice is a growable array. In gostub, it’s a special case of a ``list``.
 
 ----
 

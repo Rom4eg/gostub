@@ -2,7 +2,7 @@
 Configuration
 #############
 
-Gostub uses a simple YAML file for configuration. The minimum configuration
+gostub uses a simple YAML file for configuration. The minimum configuration
 requires specifying at least one service.
 
 Configuration format
@@ -54,7 +54,7 @@ Parameters
 How the path to the stubs is formed
 ***********************************
 
-Gostub uses the following scheme to search for template files:
+gostub uses the following scheme to search for template files:
 
 .. code-block:: text
 

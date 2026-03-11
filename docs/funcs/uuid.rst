@@ -1,7 +1,7 @@
 UUID Functions
 **************
 
-Gostub can generate UUID v4 universally unique IDs.
+gostub can generate UUID v4 universally unique IDs.
 
 ----
 

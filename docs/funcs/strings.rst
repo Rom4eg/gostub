@@ -1,7 +1,7 @@
 String Functions
 ****************
 
-Gostub has a number of string manipulation functions.
+gostub has a number of string manipulation functions.
 
 ----
 

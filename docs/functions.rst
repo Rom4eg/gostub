@@ -1,7 +1,7 @@
 Template functions
 ##################
 
-Gostub provides many built-in functions for processing data in templates.
+gostub provides many built-in functions for processing data in templates.
 The functions are grouped into categories for easy searching.
 
 .. contents:: Content

@@ -1,7 +1,7 @@
 Network Functions
 *****************
 
-Gostub provides network manipulation functions.
+gostub provides network manipulation functions.
 
 ----
 

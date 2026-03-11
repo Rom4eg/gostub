@@ -1,7 +1,7 @@
 Dictionaries and Dict Functions
 *******************************
 
-Gostub provides a key/value storage type called a dict (short for “dictionary”, as in Python). A dict is an unordered type.
+gostub provides a key/value storage type called a dict (short for “dictionary”, as in Python). A dict is an unordered type.
 
 The key to a dictionary must be a string. However, the value can be any type, even another dict or list.
 

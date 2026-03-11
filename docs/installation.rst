@@ -2,7 +2,7 @@
 Installation
 ############
 
-Gostub can be installed in several ways: via Go, from sources or using Docker.
+gostub can be installed in several ways: via Go, from sources or using Docker.
 
 
 Installation via Go
