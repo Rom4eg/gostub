@@ -74,7 +74,7 @@ When a request is received, gostub maps the URL path to a file on disk.
 
 The mapping format is:
 ``` text
-[root]/[service_name]/[URL_path].
+[root]/[service_name]/[URL_path]
 ```
 For example, a request to http://localhost:8080/api/user with the configuration above will render the file `/tmp/stubs/default/api/user`.
 
