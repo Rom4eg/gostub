@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/Rom4eg/gostub/config"
 	"github.com/Rom4eg/gostub/flags"
@@ -53,36 +54,43 @@ func runServices(ctx context.Context) {
 		go func() {
 			defer wg.Done()
 
-			opts := service.FactoryOpt{
-				Type:       service.ServiceType(s.Type),
-				Logger:     log.NewLogger(fmt.Sprintf("[%s]", s.Name)),
-				ServiceOpt: s.Options,
-			}
-			srv, err := f.MakeService(s.Name, opts)
-			if err != nil {
-				log.Error(err.Error())
-				return
-			}
-
-			done := make(chan struct{})
-			go func() {
-				defer close(done)
-				<-ctx.Done()
-				err := m.StopService(s.Name)
+			for {
+				opts := service.FactoryOpt{
+					Type:       service.ServiceType(s.Type),
+					Logger:     log.NewLogger(fmt.Sprintf("[%s]", s.Name)),
+					ServiceOpt: s.Options,
+				}
+				srv, err := f.MakeService(s.Name, opts)
 				if err != nil {
 					log.Error(err.Error())
+					return
 				}
 
-				done <- struct{}{}
-			}()
+				go func() {
+					<-ctx.Done()
+					err := m.StopService(s.Name)
+					if err != nil {
+						log.Error(err.Error())
+					}
 
-			err = m.StartService(s.Name, srv)
-			if err != nil && !errors.Is(err, http.ErrServerClosed) {
-				log.Error(err.Error())
-				return
+				}()
+
+				err = m.StartService(s.Name, srv)
+				if err == nil || errors.Is(err, http.ErrServerClosed) {
+					break
+				}
+
+				msg := fmt.Errorf("service \"%s\" crashed with error - %w", s.Name, err)
+				log.Error(msg.Error())
+
+				err = m.StopService(s.Name)
+				if err != nil {
+					log.Error(msg.Error())
+				}
+
+				log.Info(fmt.Sprintf("restarting \"%s\" in 5 seconds", s.Name))
+				time.Sleep(5 * time.Second)
 			}
-
-			<-done
 		}()
 	}
 	wg.Wait()
