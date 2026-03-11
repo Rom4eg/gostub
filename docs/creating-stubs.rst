@@ -157,27 +157,24 @@ Content ``_helpers``:
        }
    {{- end }}
 
-   {{ define "isAdmin" -}}
-       {{- eq . "admin" -}}
-   {{- end }}
-
 Now the main ``profile`` template can use these definitions:
 
 .. code-block:: go
 
-   {{ define "main" }}
-       {{- $role := "admin" -}}
+    {{ define "main" }}
+        {{/* $role := "user" */}} // uncomment this to test `else` block
+        {{- $role := "admin" -}}
 
-       {{- if template "isAdmin" $role -}}
-           {{ .SetCode 200 }}
-           {
-             "user": {{ template "format.user" "admin_user" }}
-           }
-       {{- else -}}
-           {{ .SetCode 403 }}
-           {{ template "error.response" dict "message" "Forbidden" "code" 403 }}
-       {{- end -}}
-   {{ end }}
+        {{- if eq $role "admin" -}}
+            {{ .SetCode 200 }}
+            {
+            "user": {{ template "format.user" "admin_user" }}
+            }
+        {{- else -}}
+            {{ .SetCode 403 }}
+            {{ template "error.response" dict "message" "Forbidden" "code" 403 }}
+        {{- end -}}
+    {{ end }}
 
 Variables
 *********
