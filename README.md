@@ -4,27 +4,27 @@
 [![License](https://img.shields.io/github/license/rom4eg/gostub)](LICENSE)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/rom4eg/gostub/go.yml)](https://github.com/rom4eg/gostub/actions)
 
-gostub - This is a lightweight service for simulating responses to various APIs. During development and debugging, stubs for external services are quickly created when the real service is unavailable or difficult to use.
+Gostub is an HTTP server that simulates API responses. It is used during development and testing to replace external services that are unavailable, unreliable, or impractical to use.
 
-## 🌟 Possibilities
- * Powerful Go templates - use the full power of the templating language to generate dynamic responses
- * Dynamic HTTP statuses - set response codes directly from the template
- * Flexible configuration - support multiple services in a single configuration file
- * Easy deployment - a single binary with no external dependencies
- * Access to environment variables - retrieve system variable values ​​in templates
+## Features
+  * __Go templates:__ Supports Go's templating engine for dynamic response generation.
+  * __Configurable HTTP status codes:__ Response status can be set within the template logic.
+  * __Multi-service configuration:__ Multiple mock services can be defined in a single YAML file.
+  * __Static binary:__ Distributed as a single executable file with no runtime dependencies.
+  * __Environment variable access:__ Templates can read and use system environment variables.
 
-## 🛠 Use cases
+## Use cases
 
-  * Demos and presentations when a predictable API response is needed
-  * Load testing: fast responses without accessing real services
-  * Error handling testing: simulating various HTTP statuses
-  * Frontend development when the backend isn't ready yet
+  * __Demos and prototyping:__ Provide a consistent and predictable API response for demonstrations or prototypes without relying on live systems.
+  * __Load testing:__ Isolate the system under test by mocking backend dependencies, ensuring load tests target only the intended component.
+  * __Testing error handling:__ Simulate various HTTP error statuses (4xx, 5xx) to verify application resilience.
+  * __Frontend development:__ Frontend teams can develop against a predefined API contract without waiting for the backend implementation to be complete.
 
-## 📄 Docs
+## Documentation
 
-For full documentation, visit [Read the Docs](https://gostub.readthedocs.io/).
+Complete documentation is available at [Read the Docs](https://gostub.readthedocs.io/).
 
-## 📦 Installation
+## Installation
 
 ```bash
 go install github.com/Rom4eg/gostub/cmd/gostub@latest
@@ -43,7 +43,7 @@ docker pull rom4eg196/gostub:latest
 docker run --rm -p 8080:8080 rom4eg196/gostub
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 Create a configuration file (e.g. config.yaml):
 ```yaml
@@ -65,12 +65,15 @@ services:
 | port      | Listening port                     | 8080             |
 | root      | Root directory with templates      | /tmp/stubs |
 
-#### Note: each service will append it's name to the root directory parameter.
-In the example above the service will look for stubs in /tmp/stubs/default
+#### Note: each service appends its name to the root directory path.
+For example, with root: /tmp/stubs and name: default, the service looks for stub files in /tmp/stubs/default.
 
-## 📝 Creating Stubs
-Stubs are Go templates that are rendered when the corresponding URL is accessed.
-The request URL is translated into a filesystem path relative to the root directory and service name.
+## Creating Stubs
+Stub files are written as Go templates.
+When a request is received, gostub maps the URL path to a file on disk.
+The mapping format is: [root]/[service_name]/[URL_path].
+
+For example, a request to http://localhost:8080/api/user with the configuration above will render the file /tmp/stubs/default/api/user.
 
 ### Example template
 Save the file, for example, /tmp/stubs/default/api/user:
@@ -98,7 +101,7 @@ Save the file, for example, /tmp/stubs/default/api/user:
 {{- end -}}
 ```
 
-## 🚀 Launch
+## Usage
 
 ```bash
 ./gostub -config /path/to/config.yaml
@@ -137,6 +140,6 @@ Content-Type: text/plain; charset=utf-8
 }
 ```
 
-## 🤝 Contribution
-PR and ideas are welcome! Create an issue to discuss new features or bugs.
+## Contribution
+Pull requests and feature requests are welcome. Please open an issue to discuss significant changes before submitting a pull request.
 
