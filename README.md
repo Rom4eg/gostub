@@ -71,9 +71,12 @@ For example, with root: /tmp/stubs and name: default, the service looks for stub
 ## Creating Stubs
 Stub files are written as Go templates.
 When a request is received, gostub maps the URL path to a file on disk.
-The mapping format is: [root]/[service_name]/[URL_path].
 
-For example, a request to http://localhost:8080/api/user with the configuration above will render the file /tmp/stubs/default/api/user.
+The mapping format is:
+``` text
+[root]/[service_name]/[URL_path].
+```
+For example, a request to http://localhost:8080/api/user with the configuration above will render the file `/tmp/stubs/default/api/user`.
 
 ### Example template
 Save the file, for example, /tmp/stubs/default/api/user:
