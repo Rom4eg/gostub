@@ -24,7 +24,15 @@ func (s *Service) Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(ctx.Code())
+	code := ctx.Code()
+	if code < 100 {
+		code = http.StatusNotImplemented
+		if len(body) > 0 {
+			code = http.StatusOK
+		}
+	}
+	w.WriteHeader(code)
+
 	_, err = w.Write(body)
 	if err != nil {
 		s.l.Error(err.Error())

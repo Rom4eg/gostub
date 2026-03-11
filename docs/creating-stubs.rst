@@ -35,6 +35,12 @@ Available objects and functions
 * ``.Request`` — HTTP Request (``*http.Request``)
 * ``.SetCode`` — function for setting the HTTP response status
 
+.. note::
+If the response code isn't explicitly set using ``.SetCode``, gostub will automatically determine it:
+
+* **200 OK** - if the generated response body has content (length > 0)
+* **501 Not Implemented** - if the response body is empty
+
 Working with query parameters
 -----------------------------
 
