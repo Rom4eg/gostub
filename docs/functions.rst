@@ -48,3 +48,5 @@ The functions are grouped into categories for easy searching.
 
 .. include:: funcs/net.rst
 
+.. include:: funcs/url.rst
+
