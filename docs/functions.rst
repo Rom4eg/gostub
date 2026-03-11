@@ -44,3 +44,5 @@ The functions are grouped into categories for easy searching.
 
 .. include:: funcs/reflection.rst
 
+.. include:: funcs/crypto.rst
+
