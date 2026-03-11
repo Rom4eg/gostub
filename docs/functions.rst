@@ -46,3 +46,5 @@ The functions are grouped into categories for easy searching.
 
 .. include:: funcs/crypto.rst
 
+.. include:: funcs/net.rst
+
