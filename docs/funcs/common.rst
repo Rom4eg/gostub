@@ -310,3 +310,28 @@ The above returns
    }
 
 ----
+
+sleep
+=====
+
+.. code-block:: go
+
+   sleep(ms int) int
+
+The ``sleep`` function pauses program for ``ms`` millisecond.
+It returns the number of milliseconds slept.
+
+**Example:**
+
+.. code-block:: html
+
+   {{ $start := now }}
+   {{ $_ := sleep 3000 }}
+   time elapsed {{ ago $start }}
+
+The above returns
+
+.. code-block:: text
+
+   time elapsed 3s
+

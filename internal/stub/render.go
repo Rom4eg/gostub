@@ -3,8 +3,6 @@ package stub
 import (
 	"bytes"
 	"text/template"
-
-	"github.com/Masterminds/sprig/v3"
 )
 
 func (s *Service) Render(t string) ([]byte, error) {
@@ -29,7 +27,7 @@ func (s *Service) _render(t string) (*bytes.Buffer, error) {
 		return nil, err
 	}
 
-	tpl, err := template.New("main").Funcs(sprig.FuncMap()).ParseFiles(files...)
+	tpl, err := template.New("main").Funcs(FuncMap()).ParseFiles(files...)
 	if err != nil {
 		return nil, err
 	}

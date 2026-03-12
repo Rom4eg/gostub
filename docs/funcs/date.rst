@@ -6,7 +6,7 @@ Date Functions
 .. _func-now:
 
 now
-====
+===
 
 .. code-block:: go
 
