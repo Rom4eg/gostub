@@ -14,11 +14,10 @@ func TestFactory_MakeService(t *testing.T) {
 	t.Parallel()
 
 	tests := []struct {
-		name    string
-		t       ServiceType
-		opts    map[string]any
-		expect  func(*testing.T, Service, error)
-		prepare func(t *testing.T, l *lm.MockILogger)
+		name   string
+		t      ServiceType
+		opts   map[string]any
+		expect func(*testing.T, Service, error)
 	}{
 		{
 			name: "FAIL: unknown type",
@@ -26,9 +25,6 @@ func TestFactory_MakeService(t *testing.T) {
 			expect: func(t *testing.T, s Service, err error) {
 				assert.Nil(t, s)
 				assert.ErrorIs(t, err, ErrUnknownServiceType)
-			},
-			prepare: func(t *testing.T, l *lm.MockILogger) {
-
 			},
 		},
 		{
@@ -38,9 +34,6 @@ func TestFactory_MakeService(t *testing.T) {
 			expect: func(t *testing.T, s Service, err error) {
 				assert.Nil(t, s)
 				assert.Error(t, err)
-			},
-			prepare: func(t *testing.T, l *lm.MockILogger) {
-
 			},
 		},
 		{
@@ -56,9 +49,6 @@ func TestFactory_MakeService(t *testing.T) {
 				assert.NoError(t, err)
 				assert.IsType(t, &http.Service{}, s)
 			},
-			prepare: func(t *testing.T, l *lm.MockILogger) {
-				l.EXPECT().Info(gomock.Any()).Times(1)
-			},
 		},
 	}
 
@@ -69,7 +59,6 @@ func TestFactory_MakeService(t *testing.T) {
 			defer ctrl.Finish()
 
 			l := lm.NewMockILogger(ctrl)
-			tt.prepare(t, l)
 			f := NewFactory()
 			got, err := f.MakeService("test", FactoryOpt{Type: tt.t, ServiceOpt: tt.opts, Logger: l})
 			tt.expect(t, got, err)

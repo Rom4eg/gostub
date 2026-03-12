@@ -37,7 +37,6 @@ func TestDefaultServer(t *testing.T) {
 			defer ctrl.Finish()
 
 			l := lm.NewMockILogger(ctrl)
-			l.EXPECT().Info(gomock.Any()).Times(1)
 			got := DefaultServer(tt.host, tt.port, nil, l)
 			assert.Equal(t, tt.want, got)
 		})
