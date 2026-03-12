@@ -24,6 +24,12 @@ func (s *Service) Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	for k, v := range ctx.Headers() {
+		for _, vv := range v {
+			w.Header().Add(k, vv)
+		}
+	}
+
 	code := ctx.Code()
 	if code < 100 {
 		code = http.StatusNotImplemented
@@ -39,11 +45,5 @@ func (s *Service) Handler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		_, _ = w.Write([]byte(err.Error()))
 		return
-	}
-
-	for k, v := range ctx.Headers() {
-		for _, vv := range v {
-			w.Header().Add(k, vv)
-		}
 	}
 }

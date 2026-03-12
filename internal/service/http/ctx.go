@@ -36,6 +36,11 @@ func (c *StubContext) AddHeader(k, v string) (string, error) {
 	return "", nil
 }
 
+func (c *StubContext) SetHeader(k, v string) (string, error) {
+	c.headers.Set(k, v)
+	return "", nil
+}
+
 func (c *StubContext) DeleteHeader(k string) (string, error) {
 	c.headers.Del(k)
 	return "", nil

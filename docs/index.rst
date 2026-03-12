@@ -18,3 +18,4 @@ which allows you to create dynamic responses of any complexity.
    configuration
    creating-stubs
    functions
+   services
