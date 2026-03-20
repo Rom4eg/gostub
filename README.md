@@ -43,6 +43,8 @@ docker pull rom4eg196/gostub:latest
 docker run --rm -p 8080:8080 rom4eg196/gostub
 ```
 
+Check the image page [https://hub.docker.com/r/rom4eg196/gostub](https://hub.docker.com/r/rom4eg196/gostub).
+
 ## Configuration
 
 Create a configuration file (e.g. config.yaml):
