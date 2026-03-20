@@ -3,6 +3,8 @@
 [![Go Version](https://img.shields.io/github/go-mod/go-version/rom4eg/gostub)](https://golang.org/)
 [![License](https://img.shields.io/github/license/rom4eg/gostub)](LICENSE)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/rom4eg/gostub/go.yml)](https://github.com/rom4eg/gostub/actions)
+[![Docker Pulls](https://img.shields.io/docker/pulls/rom4eg196/gostub)](https://hub.docker.com/r/rom4eg196/gostub)
+[![Docker Image Size](https://img.shields.io/docker/image-size/rom4eg196/gostub/latest)](https://hub.docker.com/r/rom4eg196/gostub)
 
 gostub is an HTTP server that simulates API responses. It is used during development and testing to replace external services that are unavailable, unreliable, or impractical to use.
 
@@ -43,7 +45,7 @@ docker pull rom4eg196/gostub:latest
 docker run --rm -p 8080:8080 rom4eg196/gostub
 ```
 
-Check the image page [https://hub.docker.com/r/rom4eg196/gostub](https://hub.docker.com/r/rom4eg196/gostub).
+Image available on [Docker Hub](https://hub.docker.com/r/rom4eg196/gostub).
 
 ## Configuration
 
