@@ -13,7 +13,7 @@ Configuration format
 
    services:
      - name: default # Seervice ID
-       type: http    # Type
+       type: api     # Type
        options:      # service specific settings
 
 Parameters
@@ -33,8 +33,8 @@ Parameters
      - ``default``, ``api``, ``auth``
    * - ``type``
      - Y
-     - Service type. Currently only ``http`` is supported
-     - ``http``
+     - Service type. Currently only ``api`` is supported
+     - ``api``
    * - ``options``
      - N
      - Service specific options

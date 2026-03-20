@@ -1,49 +1,16 @@
 package http
 
-import (
-	"fmt"
-	"net/http"
-
-	"github.com/Rom4eg/gostub/internal/stub"
-)
+import "net/http"
 
 func (s *Service) Handler(w http.ResponseWriter, r *http.Request) {
 	s.l.Debug("Enter Handler")
 	defer s.l.Debug("Exit Handler")
 
-	ctx := NewContext(r)
-	ss := stub.New(s.Root, ctx)
-
-	path := r.URL.EscapedPath()
-	s.l.Info(fmt.Sprintf("Rendering %s", path))
-	body, err := ss.Render(path)
-	if err != nil {
-		s.l.Error(err.Error())
-		w.WriteHeader(http.StatusInternalServerError)
-		_, _ = w.Write([]byte(err.Error()))
+	if s.HandlerFunc != nil {
+		s.HandlerFunc(w, r)
 		return
 	}
 
-	for k, v := range ctx.Headers() {
-		for _, vv := range v {
-			w.Header().Add(k, vv)
-		}
-	}
-
-	code := ctx.Code()
-	if code < 100 {
-		code = http.StatusNotImplemented
-		if len(body) > 0 {
-			code = http.StatusOK
-		}
-	}
-	w.WriteHeader(code)
-
-	_, err = w.Write(body)
-	if err != nil {
-		s.l.Error(err.Error())
-		w.WriteHeader(http.StatusInternalServerError)
-		_, _ = w.Write([]byte(err.Error()))
-		return
-	}
+	resp := &Response{}
+	s.StartResponse(resp, w)
 }

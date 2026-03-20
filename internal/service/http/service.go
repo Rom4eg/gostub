@@ -8,9 +8,10 @@ import (
 )
 
 type Service struct {
-	Host string
-	Port int
-	Root string
+	Host        string
+	Port        int
+	Root        string
+	HandlerFunc http.HandlerFunc
 
 	l   log.ILogger
 	srv IServer
@@ -18,11 +19,12 @@ type Service struct {
 
 func New(name string, l log.ILogger, opts ServiceOpts) *Service {
 	svc := &Service{
-		Host: opts.Host,
-		Port: opts.Port,
-		l:    l,
-		srv:  opts.Server,
-		Root: filepath.Join(opts.Root, name),
+		Host:        opts.Host,
+		Port:        opts.Port,
+		l:           l,
+		srv:         opts.Server,
+		Root:        filepath.Join(opts.Root, name),
+		HandlerFunc: opts.Handler,
 	}
 
 	if svc.srv == nil {

@@ -49,7 +49,7 @@ Create a configuration file (e.g. config.yaml):
 ```yaml
 services:
   - name: default
-    type: http
+    type: api
     options:
       host: localhost
       port: 8080
@@ -60,7 +60,7 @@ services:
 | Parameter | Description                        | Example          |
 |-----------|------------------------------------|------------------|
 | name      | Service ID                         | default          |
-| type      | Service type (currently only http) | http             |
+| type      | Service type (currently only api)  | api              |
 | host      | Host for listening                 | localhost        |
 | port      | Listening port                     | 8080             |
 | root      | Root directory with templates      | /tmp/stubs |

@@ -1,13 +1,13 @@
 ************
-Http Service
+Api Service
 ************
 
-The HTTP service listens for incoming HTTP requests and serves stub responses from the file system.
+The API service listens for incoming API requests and serves stub responses from the file system.
 
 Configuration
 =============
 
-When defining an HTTP service in the configuration file, the following parameters are available under the ``options`` field.
+When defining an API service in the configuration file, the following parameters are available under the ``options`` field.
 
 .. list-table::
    :header-rows: 1
@@ -50,7 +50,7 @@ Example
 
    services:
      - name: users
-       type: http
+       type: api
        options:
          host: localhost
          port: 8080
@@ -71,7 +71,7 @@ The service will search for:
 Functions
 =========
 
-Functions available only for ``http`` service
+Functions available only for ``API`` service
 
 Note: certain headers such as Content-Length can be added automatically and do not appear in the Headers before response is started.
 

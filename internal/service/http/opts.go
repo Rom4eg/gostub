@@ -1,32 +1,28 @@
 package http
 
+import (
+	"net/http"
+
+	"github.com/Rom4eg/gostub/pkg/map2struct"
+)
+
 type ServiceOpts struct {
-	Host   string
-	Port   int
-	Root   string
-	Server IServer
+	Host    string `m2s:"host"`
+	Port    int    `m2s:"port"`
+	Root    string `m2s:"root"`
+	Server  IServer
+	Handler http.HandlerFunc
 }
 
 func NewServiceOpts(opts map[string]any) (ServiceOpts, error) {
-	h, ok := opts["host"].(string)
-	if !ok {
-		return ServiceOpts{}, ErrIncorrectServiceOptions
+	var o ServiceOpts
+	e := map2struct.Map2Struct(opts, &o)
+	if e != nil {
+		return ServiceOpts{}, e
 	}
 
-	p, ok := opts["port"].(int)
-	if !ok {
+	if o.Host == "" || o.Port == 0 || o.Root == "" {
 		return ServiceOpts{}, ErrIncorrectServiceOptions
 	}
-
-	r, ok := opts["root"].(string)
-	if !ok {
-		return ServiceOpts{}, ErrIncorrectServiceOptions
-	}
-
-	return ServiceOpts{
-		Host:   h,
-		Port:   p,
-		Root:   r,
-		Server: nil,
-	}, nil
+	return o, nil
 }

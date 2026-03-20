@@ -1,6 +1,9 @@
 package service
 
 import (
+	"fmt"
+	"net/http"
+
 	httpsrv "github.com/Rom4eg/gostub/internal/service/http"
 	"github.com/Rom4eg/gostub/log"
 )
@@ -25,12 +28,19 @@ func NewFactory() *Factory {
 
 func (f *Factory) MakeService(name string, o FactoryOpt) (Service, error) {
 	switch o.Type {
-	case ServiceHttp:
+	case ServiceHttp, ServiceApi:
+		if o.Type == ServiceHttp {
+			warn := fmt.Sprintf("Service type \"%s\" is deprecated and will be removed in the future. Use \"%s\" instead", ServiceHttp, ServiceApi)
+			o.Logger.Warning(warn)
+		}
+
 		opts, err := httpsrv.NewServiceOpts(o.ServiceOpt)
 		if err != nil {
 			return nil, err
 		}
-		return httpsrv.New(name, o.Logger, opts), nil
+		srv := httpsrv.New(name, o.Logger, opts)
+		srv.HandlerFunc = http.HandlerFunc(srv.HandlerApi)
+		return srv, nil
 	default:
 		return nil, ErrUnknownServiceType
 	}

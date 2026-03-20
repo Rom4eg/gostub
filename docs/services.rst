@@ -9,5 +9,5 @@ Each service runs independently and listens for incoming requests on its configu
    :maxdepth: 1
    :caption: Available service types
 
-   services/http
+   services/api
 

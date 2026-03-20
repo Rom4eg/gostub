@@ -12,7 +12,7 @@ import (
 	"go.uber.org/mock/gomock"
 )
 
-func TestService_Handler(t *testing.T) {
+func TestService_HandlerApi(t *testing.T) {
 	t.Parallel()
 
 	tests := []struct {
@@ -116,7 +116,7 @@ func TestService_Handler(t *testing.T) {
 			}
 
 			s := New("test", l, opts)
-			s.Handler(tt.rw, tt.r)
+			s.HandlerApi(tt.rw, tt.r)
 			tt.expect(t, tt.rw)
 		})
 	}
