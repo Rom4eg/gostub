@@ -1,6 +1,6 @@
-************
+***********
 Api Service
-************
+***********
 
 The API service listens for incoming API requests and serves stub responses from the file system.
 
@@ -286,3 +286,123 @@ The above returns
 
 
    {}
+
+----
+
+.. _func-Body:
+
+Body
+****
+
+.. code-block:: go
+
+   Body() map[string]any
+
+The ``Body`` function reads the ``Content-type`` header and parses the request body accordingly.
+
+It panics in case of error.
+
+**Example:**
+
+.. code-block:: html
+
+    {{ $body := .Body }}
+    {{ get $body "foo" }}
+
+The above returns
+
+.. code-block:: text
+
+    $ curl -H "Content-Type: application/json" "http://localhost:8081" -d "{\"foo\": \"bar\"}"
+
+    bar
+
+----
+
+.. _func-JsonBody:
+
+JsonBody
+********
+
+.. code-block:: go
+
+   JsonBody() map[string]any
+
+The ``JsonBody`` function reads the request body as a ``JSON`` string.
+
+It panics in case of error.
+
+**Example:**
+
+.. code-block:: html
+
+    {{ $body := .JsonBody }}
+    {{ get $body "foo" }}
+
+The above returns
+
+.. code-block:: text
+
+    $ curl -H "Content-Type: application/json" "http://localhost:8081" -d "{\"foo\": \"bar\"}"
+
+    bar
+
+----
+
+.. _func-FormBody:
+
+FormBody
+********
+
+.. code-block:: go
+
+   FormBody() map[string][]any
+
+The ``FormBody`` function reads the request body as a ``key=value`` form.
+
+It panics in case of error.
+
+**Example:**
+
+.. code-block:: html
+
+    {{ $body := .FormBody }}
+    {{ get $body "foo" | first }}
+
+The above returns
+
+.. code-block:: text
+
+    $ curl -H "Content-Type: application/x-www-form-urlencoded" "http://localhost:8081" -d "foo=bar"
+
+    bar
+
+----
+
+.. _func-MultipartBody:
+
+MultipartBody
+*************
+
+.. code-block:: go
+
+   MultipartBody() map[string][]any
+
+The ``MultipartBody`` function reads the request body as a multipart form.
+
+It panics in case of error.
+
+**Example:**
+
+.. code-block:: html
+
+    {{ $body := .MultipartBody }}
+    {{ get $body "foo" | first }}
+
+The above returns
+
+.. code-block:: text
+
+    $ curl -H "Content-Type: multipart/form-data" "http://localhost:8081" -F "foo=bar"
+
+    bar
