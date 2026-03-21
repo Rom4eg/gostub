@@ -1,6 +1,9 @@
 package http
 
-import "net/http"
+import (
+	"fmt"
+	"net/http"
+)
 
 func (s *Service) StartResponse(r *Response, w http.ResponseWriter) {
 	s.l.Debug("Enter StartResponse")
@@ -21,11 +24,17 @@ func (s *Service) StartResponse(r *Response, w http.ResponseWriter) {
 	}
 	w.WriteHeader(code)
 
-	_, err := w.Write(r.Body)
+	n, err := w.Write(r.Body)
 	if err != nil {
 		s.l.Error(err.Error())
 		w.WriteHeader(http.StatusInternalServerError)
-		_, _ = w.Write([]byte(err.Error()))
+
+		_, err = w.Write([]byte(err.Error()))
+		s.l.Error(err.Error())
 		return
+	}
+
+	if n < len(r.Body) {
+		s.l.Error(fmt.Sprintf("writen %d bytes, while recieved %d bytes", n, len(r.Body)))
 	}
 }

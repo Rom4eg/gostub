@@ -8,8 +8,8 @@ import (
 )
 
 func (s *Service) HandlerApi(w http.ResponseWriter, r *http.Request) {
-	s.l.Debug("Enter Handler")
-	defer s.l.Debug("Exit Handler")
+	s.l.Debug("Enter HandlerApi")
+	defer s.l.Debug("Exit HandlerApi")
 
 	ctx := NewContext(r)
 	ss := stub.New(s.Root, ctx)
