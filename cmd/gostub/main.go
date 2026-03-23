@@ -54,7 +54,20 @@ func runServices(ctx context.Context) {
 		go func() {
 			defer wg.Done()
 
+			go func() {
+				<-ctx.Done()
+				err := m.StopService(s.Name)
+				if err != nil {
+					log.Error(err.Error())
+				}
+			}()
+
 			for {
+				if ctx.Err() != nil {
+					log.Info(ctx.Err().Error())
+					return
+				}
+
 				opts := service.FactoryOpt{
 					Type:       service.ServiceType(s.Type),
 					Logger:     log.NewLogger(fmt.Sprintf("[%s]", s.Name)),
@@ -66,18 +79,9 @@ func runServices(ctx context.Context) {
 					return
 				}
 
-				go func() {
-					<-ctx.Done()
-					err := m.StopService(s.Name)
-					if err != nil {
-						log.Error(err.Error())
-					}
-
-				}()
-
 				err = m.StartService(s.Name, srv)
 				if err == nil || errors.Is(err, http.ErrServerClosed) {
-					break
+					continue
 				}
 
 				msg := fmt.Errorf("service \"%s\" crashed with error - %w", s.Name, err)
