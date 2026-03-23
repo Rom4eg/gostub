@@ -7,9 +7,9 @@ type LogLevel int
 const (
 	LevelUndefined LogLevel = -1
 	LevelNone      LogLevel = iota
-	LevelInfo
 	LevelError
 	LevelWarning
+	LevelInfo
 	LevelDebug
 )
 
