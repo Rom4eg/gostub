@@ -29,7 +29,7 @@ func TestFactory_MakeService(t *testing.T) {
 		},
 		{
 			name: "FAIL: incorrect options",
-			t:    ServiceHttp,
+			t:    ServiceApi,
 			opts: map[string]any{"host": 123},
 			expect: func(t *testing.T, s Service, err error) {
 				assert.Nil(t, s)
@@ -38,7 +38,7 @@ func TestFactory_MakeService(t *testing.T) {
 		},
 		{
 			name: "Pass: http",
-			t:    ServiceHttp,
+			t:    ServiceApi,
 			opts: map[string]any{
 				"host": "localhost",
 				"port": 8080,
