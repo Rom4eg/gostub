@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/Rom4eg/gostub/internal/service/http/context"
 	"github.com/Rom4eg/gostub/internal/stub"
 )
 
@@ -11,7 +12,7 @@ func (s *Service) HandlerApi(w http.ResponseWriter, r *http.Request) {
 	s.l.Debug("Enter HandlerApi")
 	defer s.l.Debug("Exit HandlerApi")
 
-	ctx := NewContext(r)
+	ctx := context.New(r)
 	ss := stub.New(s.Root, ctx)
 
 	path := r.URL.EscapedPath()
