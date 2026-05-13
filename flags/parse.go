@@ -7,8 +7,8 @@ func Parse(args []string) {
 		f = new(Flags)
 	}
 
-	flag.StringVar(&f.configFile, "config", "./config.yaml", "config file")
-	flag.StringVar(&f.logLevel, "logging", "info", "logging level")
+	flag.StringVar(&f.configFile, "config", configDefault, "config file")
+	flag.StringVar(&f.logLevel, "logging", logDefault, "logging level")
 
 	err := flag.CommandLine.Parse(args)
 	if err != nil {

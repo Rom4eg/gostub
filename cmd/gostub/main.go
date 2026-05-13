@@ -20,12 +20,8 @@ import (
 )
 
 func main() {
-	f := flags.Get()
-	config.SetConfigLocation(f.Config())
-	log.SetLevelS(f.Logging())
-
-	log.Debug(fmt.Sprintf("load config from: %s", f.Config()))
-	config.Reload()
+	SetLogging()
+	LoadConfig()
 
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
@@ -41,6 +37,28 @@ func main() {
 	}()
 
 	runServices(ctx)
+}
+
+func LoadConfig() {
+	f := flags.Get()
+	if f.HasConfig() {
+		config.SetConfigLocation(f.Config())
+	} else {
+		cp, err := config.FindConfig()
+		if err != nil {
+			panic(err)
+		}
+
+		config.SetConfigLocation(cp)
+	}
+
+	log.Debug(fmt.Sprintf("load config from: %s", config.GetConfigLocation()))
+	config.Reload()
+}
+
+func SetLogging() {
+	f := flags.Get()
+	log.SetLevelS(f.Logging())
 }
 
 func runServices(ctx context.Context) {
