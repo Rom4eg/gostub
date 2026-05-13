@@ -69,6 +69,14 @@ services:
 | port      | Listening port                     | 8080             |
 | root      | Root directory with templates      | /tmp/stubs |
 
+Note: The configuration file is searched for in the following order:
+
+ * ~/.config/gostub/config.yaml (user-specific)
+ * /etc/gostub/config.yaml (system-wide)
+ * ./config.yaml (binary startup directory)
+
+The first found file is used. You can override this behavior by explicitly specifying the path with the `-config` flag.
+
 #### Note: each service appends its name to the root directory path.
 For example, with root: /tmp/stubs and name: default, the service looks for stub files in /tmp/stubs/default.
 

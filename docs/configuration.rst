@@ -5,6 +5,17 @@ Configuration
 gostub uses a simple YAML file for configuration. The minimum configuration
 requires specifying at least one service.
 
+Configuration lookup order
+**************************
+
+By default, gostub looks for config.yaml in the following order:
+
+#. User-specific ``~/.config/gostub/config.yaml``
+#. System-wide ``/etc/gostub/config.yaml``
+#. Current working directory ``./config.yaml``
+
+The first found file is loaded. If no configuration file is found, gostub will exit with an error.
+
 Configuration format
 ********************
 
