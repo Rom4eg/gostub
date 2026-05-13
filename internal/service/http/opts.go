@@ -7,9 +7,11 @@ import (
 )
 
 type ServiceOpts struct {
-	Host    string `m2s:"host"`
-	Port    int    `m2s:"port"`
-	Root    string `m2s:"root"`
+	Host string `m2s:"host"`
+	Port int    `m2s:"port"`
+	Root string `m2s:"root"`
+	Trim bool   `m2s:"trim"`
+
 	Server  IServer
 	Handler http.HandlerFunc
 }
@@ -23,6 +25,11 @@ func NewServiceOpts(opts map[string]any) (ServiceOpts, error) {
 
 	if o.Host == "" || o.Port == 0 || o.Root == "" {
 		return ServiceOpts{}, ErrIncorrectServiceOptions
+	}
+
+	_, ok := opts["trim"]
+	if !ok {
+		o.Trim = true
 	}
 	return o, nil
 }

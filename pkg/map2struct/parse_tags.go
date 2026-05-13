@@ -34,6 +34,8 @@ func parseTags(s interface{}) []M2STag {
 			tags = append(tags, New(f.Name, tag, M2SSFloat))
 		case reflect.Slice, reflect.Array:
 			tags = append(tags, New(f.Name, tag, M2SList))
+		case reflect.Bool:
+			tags = append(tags, New(f.Name, tag, M2SBool))
 		}
 	}
 

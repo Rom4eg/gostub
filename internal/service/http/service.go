@@ -12,6 +12,7 @@ type Service struct {
 	Port        int
 	Root        string
 	HandlerFunc http.HandlerFunc
+	Trim        bool
 
 	l   log.ILogger
 	srv IServer
@@ -23,6 +24,7 @@ func New(name string, l log.ILogger, opts ServiceOpts) *Service {
 		Port:        opts.Port,
 		l:           l,
 		srv:         opts.Server,
+		Trim:        opts.Trim,
 		Root:        filepath.Join(opts.Root, name),
 		HandlerFunc: opts.Handler,
 	}

@@ -1,6 +1,7 @@
 package http
 
 import (
+	"bytes"
 	"fmt"
 	"net/http"
 )
@@ -24,6 +25,9 @@ func (s *Service) StartResponse(r *Response, w http.ResponseWriter) {
 	}
 	w.WriteHeader(code)
 
+	if s.Trim {
+		r.Body = bytes.TrimSpace(r.Body)
+	}
 	n, err := w.Write(r.Body)
 	if err != nil {
 		s.l.Error(err.Error())

@@ -8,6 +8,7 @@ const (
 	M2SSInt
 	M2SSFloat
 	M2SList
+	M2SBool
 )
 
 type M2STag struct {

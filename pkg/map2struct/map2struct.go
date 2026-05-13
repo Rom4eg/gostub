@@ -44,6 +44,10 @@ func Map2Struct(m map[string]interface{}, s interface{}) error {
 			}
 		case M2SList:
 			fname.Set(reflect.ValueOf(v))
+		case M2SBool:
+			if _vt, _ok := v.(bool); _ok {
+				fname.SetBool(_vt)
+			}
 		}
 	}
 	return nil

@@ -29,6 +29,10 @@ When defining an API service in the configuration file, the following parameters
      - Y
      - The base directory where template files are stored
      - ``/tmp/stubs``, ``./stubs``, ``/var/gostub``
+   * - ``trim``
+     - N
+     - Trim trailing whitespaces from the response body. Default: true
+     - ``true``
 
 How the path to the stubs is formed
 ***********************************
@@ -55,6 +59,7 @@ Example
          host: localhost
          port: 8080
          root: /var/stubs
+         trim: true
 
 Request:
 

@@ -58,6 +58,7 @@ services:
       host: localhost
       port: 8080
       root: /tmp/stubs
+      trim: true
 ```
 
 ### Configuration
@@ -68,6 +69,7 @@ services:
 | host      | Host for listening                 | localhost        |
 | port      | Listening port                     | 8080             |
 | root      | Root directory with templates      | /tmp/stubs |
+| trim      | Trim trailing whitespaces          | true |
 
 Note: The configuration file is searched for in the following order:
 
