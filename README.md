@@ -8,15 +8,6 @@
 
 gostub is an HTTP server that simulates API responses. It is used during development and testing to replace external services that are unavailable, unreliable, or impractical to use.
 
-## Features
-  * __Go templates:__ Supports Go's templating engine for dynamic response generation.
-  * __Configurable HTTP status codes:__ Response status can be set within the template logic.
-  * __Multi-service configuration:__ Multiple mock services can be defined in a single YAML file.
-  * __Static binary:__ Distributed as a single executable file with no runtime dependencies.
-  * __Environment variable access:__ Templates can read and use system environment variables.
-
-## Use cases
-
   * __Demos and prototyping:__ Provide a consistent and predictable API response for demonstrations or prototypes without relying on live systems.
   * __Load testing:__ Isolate the system under test by mocking backend dependencies, ensuring load tests target only the intended component.
   * __Testing error handling:__ Simulate various HTTP error statuses (4xx, 5xx) to verify application resilience.
