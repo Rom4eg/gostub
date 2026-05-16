@@ -3,7 +3,7 @@ package http
 import (
 	"net/http"
 
-	"github.com/Rom4eg/gostub/pkg/map2struct"
+	"github.com/Rom4eg/map2struct"
 )
 
 type ServiceOpts struct {
