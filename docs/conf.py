@@ -6,8 +6,8 @@ project = 'gostub'
 copyright = '2026, Rom4eg'
 author = 'Roman Paranichev'
 
-release = '0.1'
-version = '0.1.0'
+release = '0.2.0'
+version = '0.2.0'
 
 # -- General configuration
 
